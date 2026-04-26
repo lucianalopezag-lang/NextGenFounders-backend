@@ -77,7 +77,16 @@ app.get("/users", auth, (req, res) => {
   if (req.user.role !== "admin") {
     return res.status(403).send("Not allowed");
   }
-  res.json(users);
+  const safeUsers = users.map(user => ({
+  id: user.id,
+  name: user.name,
+  email: user.email,
+  age: user.age,
+  country: user.country,
+  role: user.role
+}));
+
+res.json(safeUsers);
 });
 
 app.listen(3000, () => {
