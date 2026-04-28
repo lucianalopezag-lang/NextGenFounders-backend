@@ -114,20 +114,21 @@ const auth = (req, res, next) => {
 };
 
 // Solo admin
-app.get("/users", auth, (req, res) => {
+app.get("/users", auth, async (req, res) => {
   if (req.user.role !== "admin") {
     return res.status(403).send("Not allowed");
   }
-  const safeUsers = users.map(user => ({
-  id: user.id,
-  name: user.name,
-  email: user.email,
-  age: user.age,
-  country: user.country,
-  role: user.role
-}));
 
-res.json(safeUsers);
+  try {
+    const result = await pool.query(
+      "SELECT id, name, email, age, country, role FROM users"
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching users");
+  }
 });
 
 app.listen(3000, () => {
