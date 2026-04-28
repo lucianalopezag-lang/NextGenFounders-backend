@@ -63,7 +63,12 @@ try {
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  const user = users.find(u => u.email === email);
+  const result = await pool.query(
+  "SELECT * FROM users WHERE email = $1",
+  [email]
+);
+
+const user = result.rows[0];
   if (!user) return res.status(400).send("User not found");
 
   const valid = await bcrypt.compare(password, user.password);
