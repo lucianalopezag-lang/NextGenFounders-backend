@@ -15,9 +15,14 @@ const pool = new Pool({
   }
 });
 
-pool.connect()
-  .then(() => console.log("DB connected"))
-  .catch(err => console.error("DB error", err));
+(async () => {
+  try {
+    await pool.query("SELECT 1");
+    console.log("DB connected");
+  } catch (err) {
+    console.error("DB error", err.message);
+  }
+})();
   
 const app = express();
 app.use(cors());
