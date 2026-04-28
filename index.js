@@ -20,7 +20,7 @@ const pool = new Pool({
     await pool.query("SELECT 1");
     console.log("DB connected");
   } catch (err) {
-    console.error("DB error", err.message);
+    console.error("DB error FULL:", err);
   }
 })();
   
