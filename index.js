@@ -42,17 +42,19 @@ app.post("/register", async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const user = {
-    id: Date.now(),
-    name,
-    email,
-    password: hashedPassword,
-    age,
-    country,
-    role: admins.includes(email) ? "admin" : "user"
-  };
+const role = admins.includes(email) ? "admin" : "user";
 
-  users.push(user);
+try {
+  await pool.query(
+    "INSERT INTO users (name, email, password, age, country, role) VALUES ($1, $2, $3, $4, $5, $6)",
+    [name, email, hashedPassword, age, country, role]
+  );
+
+  res.json({ message: "User registered" });
+} catch (err) {
+  console.error(err);
+  res.status(500).send("Error registering user");
+}
 
   res.json({ message: "User registered" });
 });
