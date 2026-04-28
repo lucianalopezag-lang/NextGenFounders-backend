@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NextGen Founders</title>
+</head>
+<body>
+
+<h1>NextGen Founders 🚀</h1>
+
+<h2>Register</h2>
+<input id="name" placeholder="Name"><br>
+<input id="email" placeholder="Email"><br>
+<input id="password" placeholder="Password"><br>
+<input id="age" placeholder="Age"><br>
+<input id="country" placeholder="Country"><br>
+<button onclick="register()">Register</button>
+
+<h2>Login</h2>
+<input id="loginEmail" placeholder="Email"><br>
+<input id="loginPassword" placeholder="Password"><br>
+<button onclick="login()">Login</button>
+
+<p id="result"></p>
+
+<script>
+const API = "https://nextgenfounders-backend-production.up.railway.app";
+
+async function register() {
+  const res = await fetch(API + "/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: name.value,
+      email: email.value,
+      password: password.value,
+      age: age.value,
+      country: country.value
+    })
+  });
+
+  const data = await res.text();
+  result.innerText = data;
+}
+
+async function login() {
+  const res = await fetch(API + "/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: loginEmail.value,
+      password: loginPassword.value
+    })
+  });
+
+  const data = await res.json();
+  result.innerText = JSON.stringify(data);
+
+  localStorage.setItem("token", data.token);
+}
+</script>
+
+</body>
+</html>
