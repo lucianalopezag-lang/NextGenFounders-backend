@@ -2,7 +2,23 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { Pool } = require("pg");
 
+const pool = new Pool({
+  host: process.env.PGHOST,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+  port: process.env.PGPORT,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+pool.connect()
+  .then(() => console.log("DB connected"))
+  .catch(err => console.error("DB error", err));
+  
 const app = express();
 app.use(cors());
 app.use(express.json());
