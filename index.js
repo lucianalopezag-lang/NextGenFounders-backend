@@ -10,7 +10,24 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
-
+(async () => {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        name TEXT,
+        email TEXT UNIQUE,
+        password TEXT,
+        age INT,
+        country TEXT,
+        role TEXT
+      )
+    `);
+    console.log("Users table ready");
+  } catch (err) {
+    console.error("Error creating table", err);
+  }
+})();
 (async () => {
   try {
     await pool.query("SELECT 1");
