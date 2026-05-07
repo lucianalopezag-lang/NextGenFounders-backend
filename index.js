@@ -37,24 +37,6 @@ const pool = new Pool({
   }
 })();
 
-    (async () => {
-  try {
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS users (
-        id SERIAL PRIMARY KEY,
-        name TEXT,
-        email TEXT UNIQUE,
-        password TEXT,
-        age INT,
-        country TEXT,
-        role TEXT
-      )
-    `);
-    console.log("Users table ready");
-  } catch (err) {
-    console.error("Error creating table", err);
-  }
-})();
 const app = express();
 app.use(cors());
 app.use(express.json());
