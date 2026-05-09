@@ -205,6 +205,10 @@ async function login() {
   localStorage.setItem("token", data.token);
 
   result.innerText = "Logged in successfully ✨";
+
+document.querySelector(".auth-section").style.display = "none";
+
+document.getElementById("dashboard").classList.remove("hidden");
 }
 
 </script>
