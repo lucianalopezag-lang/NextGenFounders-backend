@@ -209,6 +209,14 @@ async function login() {
 document.querySelector(".auth-section").style.display = "none";
 
 document.getElementById("dashboard").classList.remove("hidden");
+function logout(){
+
+  localStorage.removeItem("token");
+
+  document.querySelector(".auth-section").style.display = "flex";
+
+  document.getElementById("dashboard").classList.add("hidden");
+
 }
 
 </script>
