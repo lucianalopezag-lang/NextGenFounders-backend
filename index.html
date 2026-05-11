@@ -232,7 +232,41 @@ document.getElementById("navbar").style.display = "none";
 document.getElementById("dashboard").classList.remove("hidden");
 }
 function logout(){
+function openModule(module){
 
+  const content = document.getElementById("module-content");
+
+  const title = document.getElementById("module-title");
+
+  const description = document.getElementById("module-description");
+
+  content.classList.remove("hidden");
+
+  if(module === "startup"){
+    title.innerText = "Startup Challenges 🚀";
+    description.innerText =
+      "Weekly creative startup challenges to help founders build real ideas.";
+  }
+
+  if(module === "mentorship"){
+    title.innerText = "Mentorship Sessions ✨";
+    description.innerText =
+      "Exclusive sessions with founders, creators and entrepreneurs.";
+  }
+
+  if(module === "community"){
+    title.innerText = "Founder Community 🌍";
+    description.innerText =
+      "Connect with ambitious young founders around the world.";
+  }
+
+  if(module === "resources"){
+    title.innerText = "Resources Library 📚";
+    description.innerText =
+      "Templates, guides, tools and startup resources curated for members.";
+  }
+
+}
   localStorage.removeItem("token");
 
   document.querySelector(".auth-section").style.display = "flex";
