@@ -162,7 +162,17 @@
 <script>
 
 const API = "https://nextgenfounders-backend-production.up.railway.app";
+if(localStorage.getItem("token")){
 
+  document.querySelector(".auth-section").style.display = "none";
+
+  document.getElementById("hero").style.display = "none";
+
+  document.getElementById("navbar").style.display = "none";
+
+  document.getElementById("dashboard").classList.remove("hidden");
+
+}
 async function register() {
 
   const res = await fetch(API + "/register", {
