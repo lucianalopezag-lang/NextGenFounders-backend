@@ -268,44 +268,53 @@ function logout(){
 
 function openModule(module){
 
-  const content = document.getElementById("module-content");
+  const page = document.getElementById("module-page");
 
   const title = document.getElementById("module-title");
 
   const description = document.getElementById("module-description");
 
-  content.classList.remove("hidden");
+  document.getElementById("dashboard").style.display = "none";
+
+  page.classList.remove("hidden");
 
   if(module === "startup"){
+
     title.innerText = "Startup Challenges 🚀";
 
     description.innerText =
-      "Weekly creative startup challenges to help founders build real ideas.";
+      "Weekly startup challenges and founder missions.";
+
   }
 
   if(module === "mentorship"){
+
     title.innerText = "Mentorship Sessions ✨";
 
     description.innerText =
-      "Exclusive sessions with founders, creators and entrepreneurs.";
+      "Exclusive sessions with creators and founders.";
+
   }
 
   if(module === "community"){
+
     title.innerText = "Founder Community 🌍";
 
     description.innerText =
-      "Connect with ambitious young founders around the world.";
+      "Private community for ambitious young builders.";
+
   }
 
   if(module === "resources"){
+
     title.innerText = "Resources Library 📚";
 
     description.innerText =
-      "Templates, guides, tools and startup resources curated for members.";
+      "Templates, tools and startup resources.";
+
   }
 
 }
-
 </script>
 
 </body>
