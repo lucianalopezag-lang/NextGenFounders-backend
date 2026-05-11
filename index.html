@@ -315,6 +315,25 @@ function openModule(module){
   }
 
 }
+  if(module === "resources"){
+
+    title.innerText = "Resources Library 📚";
+
+    description.innerText =
+      "Templates, tools and startup resources.";
+
+  }
+
+}
+
+function closeModule(){
+
+  document.getElementById("module-page").classList.add("hidden");
+
+  document.getElementById("dashboard").style.display = "block";
+
+}
+
 </script>
 
 </body>
