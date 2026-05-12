@@ -97,6 +97,20 @@ const user = result.rows[0];
 
   res.json({ token });
 });
+
+const auth = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) return res.status(401).send("No token");
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch {
+    res.status(401).send("Invalid token");
+  }
+};
+
 app.get("/me", auth, async (req, res) => {
 
   try {
@@ -118,19 +132,6 @@ app.get("/me", auth, async (req, res) => {
 
 });
 
-// Middleware auth
-const auth = (req, res, next) => {
-  const token = req.headers.authorization;
-  if (!token) return res.status(401).send("No token");
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch {
-    res.status(401).send("Invalid token");
-  }
-};
 
 // Solo admin
 app.get("/users", auth, async (req, res) => {
