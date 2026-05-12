@@ -371,6 +371,53 @@ function closeModule(){
   document.getElementById("dashboard").style.display = "block";
 
 }
+async function openAdmin(){
+
+  document.getElementById("dashboard")
+    .style.display = "none";
+
+  document.getElementById("admin-panel")
+    .classList.remove("hidden");
+
+  const token = localStorage.getItem("token");
+
+  const res = await fetch(API + "/users", {
+
+    headers: {
+      authorization: token
+    }
+
+  });
+
+  const users = await res.json();
+
+  let html = "";
+
+  users.forEach(user => {
+
+    html += `
+      <div class="lesson-card">
+        <h3>${user.name}</h3>
+        <p>${user.email}</p>
+        <p>${user.country}</p>
+      </div>
+    `;
+
+  });
+
+  document.getElementById("users-list").innerHTML = html;
+
+}
+
+function closeAdmin(){
+
+  document.getElementById("admin-panel")
+    .classList.add("hidden");
+
+  document.getElementById("dashboard")
+    .style.display = "block";
+
+}
 
 </script>
 
