@@ -287,20 +287,31 @@ async function login() {
     })
   });
 
+  if(!res.ok){
+
+    const error = await res.text();
+
+    result.innerText = error;
+
+    return;
+  }
+
   const data = await res.json();
 
   localStorage.setItem("token", data.token);
 
   result.innerText = "Logged in successfully ✨";
 
-document.querySelector(".auth-section").style.display = "none";
+  document.querySelector(".auth-section").style.display = "none";
 
-document.getElementById("hero").style.display = "none";
+  document.getElementById("hero").style.display = "none";
 
-document.getElementById("navbar").style.display = "none";
+  document.getElementById("navbar").style.display = "none";
 
-document.getElementById("dashboard").classList.remove("hidden");
-loadUser();
+  document.getElementById("dashboard").classList.remove("hidden");
+
+  loadUser();
+
 }
 
 function logout(){
