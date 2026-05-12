@@ -97,6 +97,26 @@ const user = result.rows[0];
 
   res.json({ token });
 });
+app.get("/me", auth, async (req, res) => {
+
+  try {
+
+    const result = await pool.query(
+      "SELECT id, name, email, country, role FROM users WHERE id = $1",
+      [req.user.id]
+    );
+
+    res.json(result.rows[0]);
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error fetching user");
+
+  }
+
+});
 
 // Middleware auth
 const auth = (req, res, next) => {
