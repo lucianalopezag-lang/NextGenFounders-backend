@@ -191,6 +191,29 @@
 <script>
 
 const API = "https://nextgenfounders-backend-production.up.railway.app";
+async function loadUser(){
+
+  const token = localStorage.getItem("token");
+
+  if(!token) return;
+
+  const res = await fetch(API + "/me", {
+
+    headers: {
+      authorization: token
+    }
+
+  });
+
+  const user = await res.json();
+
+  document.getElementById("welcome-name").innerText =
+    `Welcome back, ${user.name} ✨`;
+
+  document.getElementById("welcome-country").innerText =
+    `Founder from ${user.country}`;
+
+}
 if(localStorage.getItem("token")){
 
   document.querySelector(".auth-section").style.display = "none";
