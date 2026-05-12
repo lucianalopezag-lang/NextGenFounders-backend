@@ -158,6 +158,26 @@ app.get("/me", auth, async (req, res) => {
 app.get("/users", auth, async (req, res) => {
   // CREATE MODULE
 app.post("/modules", auth, async (req, res) => {
+  // GET MODULES
+app.get("/modules", async (req, res) => {
+
+  try {
+
+    const result = await pool.query(
+      "SELECT * FROM modules"
+    );
+
+    res.json(result.rows);
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error fetching modules");
+
+  }
+
+});
 
   if(req.user.role !== "admin"){
     return res.status(403).send("Not allowed");
