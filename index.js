@@ -30,6 +30,27 @@ const pool = new Pool({
 })();
 (async () => {
   try {
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS modules (
+        id SERIAL PRIMARY KEY,
+        title TEXT,
+        description TEXT,
+        color TEXT
+      )
+    `);
+
+    console.log("Modules table ready");
+
+  } catch (err) {
+
+    console.error("Error creating modules table", err);
+
+  }
+})();
+
+(async () => {
+  try {
     await pool.query("SELECT 1");
     console.log("DB connected");
   } catch (err) {
