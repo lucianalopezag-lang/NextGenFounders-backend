@@ -212,6 +212,10 @@ async function loadUser(){
 
   document.getElementById("welcome-country").innerText =
     `Founder from ${user.country}`;
+if(user.role === "admin"){
+
+  document.getElementById("admin-btn")
+    .classList.remove("hidden");
 
 }
 if(localStorage.getItem("token")){
