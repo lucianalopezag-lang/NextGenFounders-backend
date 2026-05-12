@@ -215,7 +215,7 @@ async function loadUser(){
 
 }
 if(localStorage.getItem("token")){
-
+loadUser();
   document.querySelector(".auth-section").style.display = "none";
 
   document.getElementById("hero").style.display = "none";
