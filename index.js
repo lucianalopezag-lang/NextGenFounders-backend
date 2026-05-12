@@ -156,6 +156,35 @@ app.get("/me", auth, async (req, res) => {
 
 // Solo admin
 app.get("/users", auth, async (req, res) => {
+  // CREATE MODULE
+app.post("/modules", auth, async (req, res) => {
+
+  if(req.user.role !== "admin"){
+    return res.status(403).send("Not allowed");
+  }
+
+  const { title, description, color } = req.body;
+
+  try {
+
+    await pool.query(
+      "INSERT INTO modules (title, description, color) VALUES ($1, $2, $3)",
+      [title, description, color]
+    );
+
+    res.json({
+      message: "Module created"
+    });
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error creating module");
+
+  }
+
+});
   if (req.user.role !== "admin") {
     return res.status(403).send("Not allowed");
   }
