@@ -363,34 +363,9 @@ function openModule(module){
 
   page.classList.remove("hidden");
 
-  if(module === "startup"){
+  title.innerText = module.title;
 
-    title.innerText = "Startup Challenges 🚀";
-
-    description.innerText =
-      "Weekly startup challenges and founder missions.";
-
-  }
-
-  if(module === "mentorship"){
-
-    title.innerText = "Mentorship Sessions ✨";
-
-    description.innerText =
-      "Exclusive sessions with creators and founders.";
-
-  }
-
-  if(module === "community"){
-
-    title.innerText = "Founder Community 🌍";
-
-    description.innerText =
-      "Private community for ambitious young builders.";
-
-  }
-
-  if(module === "resources"){
+description.innerText = module.description;
 
     title.innerText = "Resources Library 📚";
 
