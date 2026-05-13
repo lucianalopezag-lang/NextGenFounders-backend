@@ -42,6 +42,27 @@ const pool = new Pool({
 
     console.log("Modules table ready");
 
+(async () => {
+  try {
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS lessons (
+        id SERIAL PRIMARY KEY,
+        module_id INT,
+        title TEXT,
+        content TEXT
+      )
+    `);
+
+    console.log("Lessons table ready");
+
+  } catch (err) {
+
+    console.error("Error creating lessons table", err);
+
+  }
+})();
+
   } catch (err) {
 
     console.error("Error creating modules table", err);
@@ -155,30 +176,35 @@ app.get("/me", auth, async (req, res) => {
 
 
 // Solo admin
+// GET USERS (ADMIN)
+
 app.get("/users", auth, async (req, res) => {
-  // CREATE MODULE
-app.post("/modules", auth, async (req, res) => {
-  (async () => {
+
+  if (req.user.role !== "admin") {
+    return res.status(403).send("Not allowed");
+  }
+
   try {
 
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS lessons (
-        id SERIAL PRIMARY KEY,
-        module_id INT,
-        title TEXT,
-        content TEXT
-      )
-    `);
+    const result = await pool.query(
+      "SELECT id, name, email, age, country, role FROM users"
+    );
 
-    console.log("Lessons table ready");
+    res.json(result.rows);
 
   } catch (err) {
 
-    console.error("Error creating lessons table", err);
+    console.error(err);
+
+    res.status(500).send("Error fetching users");
 
   }
-})();
-  // GET MODULES
+
+});
+
+
+// GET MODULES
+
 app.get("/modules", async (req, res) => {
 
   try {
@@ -198,6 +224,11 @@ app.get("/modules", async (req, res) => {
   }
 
 });
+
+
+// CREATE MODULE
+
+app.post("/modules", auth, async (req, res) => {
 
   if(req.user.role !== "admin"){
     return res.status(403).send("Not allowed");
@@ -225,23 +256,10 @@ app.get("/modules", async (req, res) => {
   }
 
 });
-  if (req.user.role !== "admin") {
-    return res.status(403).send("Not allowed");
-  }
 
-  try {
-    const result = await pool.query(
-      "SELECT id, name, email, age, country, role FROM users"
-    );
 
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error fetching users");
-  }
-});
+// GET LESSONS
 
-app.post("/lessons", auth, async (req, res) => {
 app.get("/lessons/:moduleId", async (req, res) => {
 
   const { moduleId } = req.params;
@@ -249,11 +267,8 @@ app.get("/lessons/:moduleId", async (req, res) => {
   try {
 
     const result = await pool.query(
-
       "SELECT * FROM lessons WHERE module_id = $1",
-
       [moduleId]
-
     );
 
     res.json(result.rows);
@@ -267,6 +282,12 @@ app.get("/lessons/:moduleId", async (req, res) => {
   }
 
 });
+
+
+// CREATE LESSON
+
+app.post("/lessons", auth, async (req, res) => {
+
   if(req.user.role !== "admin"){
     return res.status(403).send("Not allowed");
   }
@@ -276,11 +297,8 @@ app.get("/lessons/:moduleId", async (req, res) => {
   try {
 
     await pool.query(
-
       "INSERT INTO lessons (module_id, title, content) VALUES ($1, $2, $3)",
-
       [module_id, title, content]
-
     );
 
     res.json({
@@ -296,6 +314,7 @@ app.get("/lessons/:moduleId", async (req, res) => {
   }
 
 });
+
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
