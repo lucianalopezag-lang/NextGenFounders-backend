@@ -473,6 +473,36 @@ async function createModule(){
 
 }
 
+async function createLesson(){
+
+  const token = localStorage.getItem("token");
+
+  const res = await fetch(API + "/lessons", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+      authorization: token
+    },
+
+    body: JSON.stringify({
+
+      module_id: lessonModuleId.value,
+
+      title: lessonTitle.value,
+
+      content: lessonContent.value
+
+    })
+
+  });
+
+  const data = await res.json();
+
+  alert(data.message);
+
+}
 function closeAdmin(){
 
   document.getElementById("admin-panel")
