@@ -242,7 +242,31 @@ app.get("/modules", async (req, res) => {
 });
 
 app.post("/lessons", auth, async (req, res) => {
+app.get("/lessons/:moduleId", async (req, res) => {
 
+  const { moduleId } = req.params;
+
+  try {
+
+    const result = await pool.query(
+
+      "SELECT * FROM lessons WHERE module_id = $1",
+
+      [moduleId]
+
+    );
+
+    res.json(result.rows);
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error fetching lessons");
+
+  }
+
+});
   if(req.user.role !== "admin"){
     return res.status(403).send("Not allowed");
   }
