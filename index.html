@@ -384,19 +384,23 @@ function openModule(module){
 
   page.classList.remove("hidden");
 
+  function openModule(module){
+
+  const page = document.getElementById("module-page");
+
+  const title = document.getElementById("module-title");
+
+  const description = document.getElementById("module-description");
+
+  document.getElementById("dashboard").style.display = "none";
+
+  page.classList.remove("hidden");
+
   title.innerText = module.title;
 
-description.innerText = module.description;
-
-    title.innerText = "Resources Library 📚";
-
-    description.innerText =
-      "Templates, tools and startup resources.";
-
-  }
+  description.innerText = module.description;
 
 }
-  
 
 function closeModule(){
 
