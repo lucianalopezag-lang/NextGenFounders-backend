@@ -214,8 +214,8 @@ async function loadModules(){
     html += `
 
       <div class="dashboard-card ${module.color}-card"
-      onclick="openModule('${module.title}')">
-
+      onclick='openModule(${JSON.stringify(module)})'
+      
         <h3>${module.title}</h3>
 
         <p>${module.description}</p>
