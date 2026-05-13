@@ -241,6 +241,37 @@ app.get("/modules", async (req, res) => {
   }
 });
 
+app.post("/lessons", auth, async (req, res) => {
+
+  if(req.user.role !== "admin"){
+    return res.status(403).send("Not allowed");
+  }
+
+  const { module_id, title, content } = req.body;
+
+  try {
+
+    await pool.query(
+
+      "INSERT INTO lessons (module_id, title, content) VALUES ($1, $2, $3)",
+
+      [module_id, title, content]
+
+    );
+
+    res.json({
+      message: "Lesson created"
+    });
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error creating lesson");
+
+  }
+
+});
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
