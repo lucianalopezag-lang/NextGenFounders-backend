@@ -42,6 +42,13 @@ const pool = new Pool({
 
     console.log("Modules table ready");
 
+  } catch (err) {
+
+    console.error("Error creating modules table", err);
+
+  }
+})();
+
 (async () => {
   try {
 
@@ -59,13 +66,6 @@ const pool = new Pool({
   } catch (err) {
 
     console.error("Error creating lessons table", err);
-
-  }
-})();
-
-  } catch (err) {
-
-    console.error("Error creating modules table", err);
 
   }
 })();
