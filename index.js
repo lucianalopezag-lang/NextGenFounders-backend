@@ -158,6 +158,26 @@ app.get("/me", auth, async (req, res) => {
 app.get("/users", auth, async (req, res) => {
   // CREATE MODULE
 app.post("/modules", auth, async (req, res) => {
+  (async () => {
+  try {
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS lessons (
+        id SERIAL PRIMARY KEY,
+        module_id INT,
+        title TEXT,
+        content TEXT
+      )
+    `);
+
+    console.log("Lessons table ready");
+
+  } catch (err) {
+
+    console.error("Error creating lessons table", err);
+
+  }
+})();
   // GET MODULES
 app.get("/modules", async (req, res) => {
 
