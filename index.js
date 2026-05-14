@@ -335,6 +335,62 @@ app.post("/lessons", auth, async (req, res) => {
   }
 
 });
+// GET ANNOUNCEMENTS
+
+app.get("/announcements", async (req, res) => {
+
+  try {
+
+    const result = await pool.query(
+      "SELECT * FROM announcements ORDER BY id DESC"
+    );
+
+    res.json(result.rows);
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error fetching announcements");
+
+  }
+
+});
+
+
+// CREATE ANNOUNCEMENT
+
+app.post("/announcements", auth, async (req, res) => {
+
+  if(req.user.role !== "admin"){
+    return res.status(403).send("Not allowed");
+  }
+
+  const { title, content, image, date } = req.body;
+
+  try {
+
+    await pool.query(
+
+      "INSERT INTO announcements (title, content, image, date) VALUES ($1, $2, $3, $4)",
+
+      [title, content, image, date]
+
+    );
+
+    res.json({
+      message: "Announcement created"
+    });
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error creating announcement");
+
+  }
+
+});
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
