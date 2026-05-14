@@ -315,6 +315,39 @@ async function loadUser(){
 
   });
 
+<section id="community-page"
+class="module-page hidden">
+
+  <button onclick="closeCommunity()"
+  class="back-btn">
+
+    ← Back
+
+  </button>
+
+  <h1>Community 🌍</h1>
+
+  <div class="auth-box">
+
+    <textarea id="postContent"
+    placeholder="Share something with the community..."></textarea>
+
+    <input id="postLink"
+    placeholder="Optional link">
+
+    <button onclick="createPost()"
+    class="auth-btn">
+
+      Publish Post
+
+    </button>
+
+  </div>
+
+  <div id="posts-container"></div>
+
+</section>
+
   const user = await res.json();
 
   document.getElementById("welcome-name").innerText =
