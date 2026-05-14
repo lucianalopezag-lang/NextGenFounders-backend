@@ -710,7 +710,52 @@ async function createPost(){
 
 }
 
+async function openResources(){
 
+  document.getElementById("dashboard")
+    .style.display = "none";
+
+  document.getElementById("resources-page")
+    .classList.remove("hidden");
+
+  const res = await fetch(API + "/lessons/1");
+
+  const lessons = await res.json();
+
+  let html = "";
+
+  lessons.forEach(lesson => {
+
+    html += `
+
+      <div class="lesson-card">
+
+        <h2>${lesson.title}</h2>
+
+        <p>${lesson.content}</p>
+
+      </div>
+
+    `;
+
+  });
+
+  document.getElementById("resources-container")
+    .innerHTML = html;
+
+}
+
+
+
+function closeResources(){
+
+  document.getElementById("resources-page")
+    .classList.add("hidden");
+
+  document.getElementById("dashboard")
+    .style.display = "block";
+
+}
 
 function closeCommunity(){
 
