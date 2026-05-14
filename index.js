@@ -411,6 +411,62 @@ app.post("/announcements", auth, async (req, res) => {
   }
 
 });
+// GET POSTS
+
+app.get("/posts", async (req, res) => {
+
+  try {
+
+    const result = await pool.query(
+      "SELECT * FROM posts ORDER BY id DESC"
+    );
+
+    res.json(result.rows);
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error fetching posts");
+
+  }
+
+});
+
+
+// CREATE POST
+
+app.post("/posts", auth, async (req, res) => {
+
+  const { content, link } = req.body;
+
+  try {
+
+    const userResult = await pool.query(
+      "SELECT name FROM users WHERE id = $1",
+      [req.user.id]
+    );
+
+    const user = userResult.rows[0];
+
+    await pool.query(
+      "INSERT INTO posts (user_name, content, link) VALUES ($1, $2, $3)",
+      [user.name, content, link]
+    );
+
+    res.json({
+      message: "Post created"
+    });
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error creating post");
+
+  }
+
+});
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
