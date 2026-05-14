@@ -531,6 +531,55 @@ async function createAnnouncement(){
   alert(data.message);
 
 }
+async function openAnnouncements(){
+
+  document.getElementById("dashboard")
+    .style.display = "none";
+
+  document.getElementById("announcements-page")
+    .classList.remove("hidden");
+
+  const res = await fetch(API + "/announcements");
+
+  const announcements = await res.json();
+
+  let html = "";
+
+  announcements.forEach(item => {
+
+    html += `
+
+      <div class="lesson-card">
+
+        <img src="${item.image}"
+        class="announcement-image">
+
+        <h2>${item.title}</h2>
+
+        <p>${item.content}</p>
+
+        <small>${item.date}</small>
+
+      </div>
+
+    `;
+
+  });
+
+  document.getElementById("announcements-container")
+    .innerHTML = html;
+
+}
+
+function closeAnnouncements(){
+
+  document.getElementById("announcements-page")
+    .classList.add("hidden");
+
+  document.getElementById("dashboard")
+    .style.display = "block";
+
+}
 function closeAdmin(){
 
   document.getElementById("admin-panel")
