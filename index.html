@@ -615,6 +615,96 @@ function closeAnnouncements(){
     .style.display = "block";
 
 }
+async function openCommunity(){
+
+  document.getElementById("dashboard")
+    .style.display = "none";
+
+  document.getElementById("community-page")
+    .classList.remove("hidden");
+
+  const res = await fetch(API + "/posts");
+
+  const posts = await res.json();
+
+  let html = "";
+
+  posts.forEach(post => {
+
+    html += `
+
+      <div class="lesson-card">
+
+        <h3>${post.user_name}</h3>
+
+        <p>${post.content}</p>
+
+        ${
+          post.link
+          ?
+          `<a href="${post.link}" target="_blank">
+            ${post.link}
+          </a>`
+          :
+          ""
+        }
+
+      </div>
+
+    `;
+
+  });
+
+  document.getElementById("posts-container")
+    .innerHTML = html;
+
+}
+
+
+
+async function createPost(){
+
+  const token = localStorage.getItem("token");
+
+  const res = await fetch(API + "/posts", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+      authorization: token
+    },
+
+    body: JSON.stringify({
+
+      content: postContent.value,
+
+      link: postLink.value
+
+    })
+
+  });
+
+  const data = await res.json();
+
+  alert(data.message);
+
+  openCommunity();
+
+}
+
+
+
+function closeCommunity(){
+
+  document.getElementById("community-page")
+    .classList.add("hidden");
+
+  document.getElementById("dashboard")
+    .style.display = "block";
+
+}
+
 function closeAdmin(){
 
   document.getElementById("admin-panel")
