@@ -69,6 +69,27 @@ const pool = new Pool({
 
   }
 })();
+(async () => {
+  try {
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS announcements (
+        id SERIAL PRIMARY KEY,
+        title TEXT,
+        content TEXT,
+        image TEXT,
+        date TEXT
+      )
+    `);
+
+    console.log("Announcements table ready");
+
+  } catch (err) {
+
+    console.error("Error creating announcements table", err);
+
+  }
+})();
 
 (async () => {
   try {
