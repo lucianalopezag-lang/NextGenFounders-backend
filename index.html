@@ -295,25 +295,6 @@ class="module-page hidden">
 </section>
 
 </section>
-<script>
-
-const API = "https://nextgenfounders-backend-production.up.railway.app";
-
-
-
-async function loadUser(){
-
-  const token = localStorage.getItem("token");
-
-  if(!token) return;
-
-  const res = await fetch(API + "/me", {
-
-    headers: {
-      authorization: token
-    }
-
-  });
 
 <section id="community-page"
 class="module-page hidden">
@@ -347,6 +328,26 @@ class="module-page hidden">
   <div id="posts-container"></div>
 
 </section>
+<script>
+
+const API = "https://nextgenfounders-backend-production.up.railway.app";
+
+
+
+async function loadUser(){
+
+  const token = localStorage.getItem("token");
+
+  if(!token) return;
+
+  const res = await fetch(API + "/me", {
+
+    headers: {
+      authorization: token
+    }
+
+  });
+
 
   const user = await res.json();
 
