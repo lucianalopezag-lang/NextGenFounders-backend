@@ -90,6 +90,26 @@ const pool = new Pool({
 
   }
 })();
+(async () => {
+  try {
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS posts (
+        id SERIAL PRIMARY KEY,
+        user_name TEXT,
+        content TEXT,
+        link TEXT
+      )
+    `);
+
+    console.log("Posts table ready");
+
+  } catch (err) {
+
+    console.error("Error creating posts table", err);
+
+  }
+})();
 
 (async () => {
   try {
