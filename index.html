@@ -254,35 +254,9 @@ class="module-page hidden">
 <script>
 
 const API = "https://nextgenfounders-backend-production.up.railway.app";
-async function loadModules(){
 
-  const res = await fetch(API + "/modules");
 
-  const modules = await res.json();
 
-  let html = "";
-
-  modules.forEach(module => {
-
-    html += `
-
-  <div class="dashboard-card ${module.color}-card"
-    onclick="openModule(${module.id})"
-
-    <h3>${module.title}</h3>
-
-    <p>${module.description}</p>
-
-  </div>
-
-`;
-
-  });
-
-  document.getElementById("modules-container")
-    .innerHTML = html;
-
-}
 async function loadUser(){
 
   const token = localStorage.getItem("token");
