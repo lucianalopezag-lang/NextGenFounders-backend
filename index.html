@@ -379,59 +379,7 @@ function logout(){
 }
 
 
- async function openModule(moduleId){
-
-  const modulesRes = await fetch(API + "/modules");
-
-  const modules = await modulesRes.json();
-
-  const module = modules.find(m => m.id === moduleId);
-
-  const lessonsRes = await fetch(
-    API + "/lessons/" + moduleId
-  );
-
-  const lessons = await lessonsRes.json();
-
-  const page = document.getElementById("module-page");
-
-  const title = document.getElementById("module-title");
-
-  const description = document.getElementById("module-description");
-
-  const lessonsContainer =
-    document.getElementById("lessons-container");
-
-  document.getElementById("dashboard")
-    .style.display = "none";
-
-  page.classList.remove("hidden");
-
-  title.innerText = module.title;
-
-  description.innerText = module.description;
-
-  let lessonsHTML = "";
-
-  lessons.forEach(lesson => {
-
-    lessonsHTML += `
-
-      <div class="lesson-card">
-
-        <h3>${lesson.title}</h3>
-
-        <p>${lesson.content}</p>
-
-      </div>
-
-    `;
-
-  });
-
-  lessonsContainer.innerHTML = lessonsHTML;
-
-}
+ 
 
 function closeModule(){
 
