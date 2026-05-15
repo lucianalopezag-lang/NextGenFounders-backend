@@ -789,6 +789,27 @@ async function openResources(){
 
 
 function closeResources(){
+function openLevels(){
+
+  document.getElementById("dashboard")
+    .style.display = "none";
+
+  document.getElementById("levels-page")
+    .classList.remove("hidden");
+
+}
+
+
+
+function closeLevels(){
+
+  document.getElementById("levels-page")
+    .classList.add("hidden");
+
+  document.getElementById("dashboard")
+    .style.display = "block";
+
+}
 
   document.getElementById("resources-page")
     .classList.add("hidden");
