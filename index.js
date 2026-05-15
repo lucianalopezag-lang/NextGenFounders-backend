@@ -467,6 +467,90 @@ app.post("/posts", auth, async (req, res) => {
   }
 
 });
+app.delete("/announcements/:id", auth, async (req, res) => {
+
+  if(req.user.role !== "admin"){
+    return res.status(403).send("Not allowed");
+  }
+
+  try {
+
+    await pool.query(
+      "DELETE FROM announcements WHERE id = $1",
+      [req.params.id]
+    );
+
+    res.json({
+      message: "Announcement deleted"
+    });
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error deleting announcement");
+
+  }
+
+});
+
+
+
+app.delete("/posts/:id", auth, async (req, res) => {
+
+  if(req.user.role !== "admin"){
+    return res.status(403).send("Not allowed");
+  }
+
+  try {
+
+    await pool.query(
+      "DELETE FROM posts WHERE id = $1",
+      [req.params.id]
+    );
+
+    res.json({
+      message: "Post deleted"
+    });
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error deleting post");
+
+  }
+
+});
+
+
+
+app.delete("/lessons/:id", auth, async (req, res) => {
+
+  if(req.user.role !== "admin"){
+    return res.status(403).send("Not allowed");
+  }
+
+  try {
+
+    await pool.query(
+      "DELETE FROM lessons WHERE id = $1",
+      [req.params.id]
+    );
+
+    res.json({
+      message: "Lesson deleted"
+    });
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error deleting lesson");
+
+  }
+
+});
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
