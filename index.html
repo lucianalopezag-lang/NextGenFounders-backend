@@ -928,7 +928,27 @@ function closeResources(){
 
 }
 
+async function loadProgress(){
 
+  const token = localStorage.getItem("token");
+
+  const res = await fetch(API + "/progress", {
+
+    headers:{
+      authorization: token
+    }
+
+  });
+
+  const progress = await res.json();
+
+  document.getElementById("xp-number")
+    .innerText = progress.xp + " XP";
+
+  document.getElementById("xp-fill")
+    .style.width = progress.xp + "%";
+
+}
 
 function openLevels(){
 
