@@ -830,6 +830,63 @@ function closeCommunity(){
 
 }
 
+async function deleteAnnouncement(id){
+
+  const token = localStorage.getItem("token");
+
+  await fetch(API + "/announcements/" + id, {
+
+    method: "DELETE",
+
+    headers: {
+      authorization: token
+    }
+
+  });
+
+  openAnnouncements();
+
+}
+
+
+
+async function deletePost(id){
+
+  const token = localStorage.getItem("token");
+
+  await fetch(API + "/posts/" + id, {
+
+    method: "DELETE",
+
+    headers: {
+      authorization: token
+    }
+
+  });
+
+  openCommunity();
+
+}
+
+
+
+async function deleteLesson(id){
+
+  const token = localStorage.getItem("token");
+
+  await fetch(API + "/lessons/" + id, {
+
+    method: "DELETE",
+
+    headers: {
+      authorization: token
+    }
+
+  });
+
+  openResources();
+
+}
 function closeAdmin(){
 
   document.getElementById("admin-panel")
