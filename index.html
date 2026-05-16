@@ -650,6 +650,14 @@ async function openAnnouncements(){
         <p>${item.content}</p>
 
         <small>${item.date}</small>
+        
+        <button
+onclick="deleteAnnouncement(${item.id})"
+class="auth-btn">
+
+Delete
+
+</button>
 
       </div>
 
