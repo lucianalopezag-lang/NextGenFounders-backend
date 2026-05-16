@@ -411,6 +411,7 @@ async function loadUser(){
 
   document.getElementById("welcome-country").innerText =
     `Founder from ${user.country}`;
+currentUserRole = user.role;
 if(user.role === "admin"){
 
   document.getElementById("admin-btn")
