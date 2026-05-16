@@ -164,10 +164,15 @@ app.post("/register", async (req, res) => {
 const role = admins.includes(email) ? "admin" : "user";
 
 try {
-  await pool.query(
-    "INSERT INTO users (name, email, password, age, country, role) VALUES ($1, $2, $3, $4, $5, $6)",
-    [name, email, hashedPassword, age, country, role]
-  );
+  const newUser = await pool.query(
+  "INSERT INTO users (name, email, password, age, country, role) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id",
+  [name, email, hashedPassword, age, country, role]
+);
+
+await pool.query(
+  "INSERT INTO user_progress (user_id, xp) VALUES ($1, $2)",
+  [newUser.rows[0].id, 50]
+);
 
   res.json({ message: "User registered" });
 } catch (err) {
