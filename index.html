@@ -652,13 +652,21 @@ async function openAnnouncements(){
 
         <small>${item.date}</small>
         
-        <button
-onclick="deleteAnnouncement(${item.id})"
-class="auth-btn">
+        ${
+  currentUserRole === "admin"
+  ?
+  `
+  <button
+  onclick="deleteAnnouncement(${item.id})"
+  class="auth-btn">
 
-Delete
+  Delete
 
-</button>
+  </button>
+  `
+  :
+  ""
+}
 
       </div>
 
