@@ -94,6 +94,25 @@ const pool = new Pool({
   try {
 
     await pool.query(`
+      CREATE TABLE IF NOT EXISTS user_progress (
+        id SERIAL PRIMARY KEY,
+        user_id INT,
+        xp INT DEFAULT 0
+      )
+    `);
+
+    console.log("User progress table ready");
+
+  } catch (err) {
+
+    console.error("Error creating progress table", err);
+
+  }
+})();
+(async () => {
+  try {
+
+    await pool.query(`
       CREATE TABLE IF NOT EXISTS posts (
         id SERIAL PRIMARY KEY,
         user_name TEXT,
