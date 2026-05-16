@@ -480,3 +480,43 @@ body{
 
   border-radius:30px;
 }
+.challenge-card{
+  transition:0.3s ease;
+}
+
+.challenge-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 35px rgba(0,0,0,0.08);
+}
+
+.dashboard-card{
+  transition:0.3s ease;
+}
+
+.dashboard-card:hover{
+  transform:translateY(-6px);
+}
+
+.auth-btn{
+  transition:0.25s ease;
+}
+
+.auth-btn:hover{
+  transform:scale(1.03);
+}
+
+.xp-fill{
+  animation:loadBar 1.4s ease;
+}
+
+@keyframes loadBar{
+
+  from{
+    width:0;
+  }
+
+  to{
+    width:68%;
+  }
+
+}
