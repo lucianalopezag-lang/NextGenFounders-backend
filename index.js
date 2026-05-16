@@ -219,6 +219,26 @@ const auth = (req, res, next) => {
 };
 
 app.get("/me", auth, async (req, res) => {
+app.get("/progress", auth, async (req, res) => {
+
+  try {
+
+    const result = await pool.query(
+      "SELECT xp FROM user_progress WHERE user_id = $1",
+      [req.user.id]
+    );
+
+    res.json(result.rows[0]);
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error fetching progress");
+
+  }
+
+});
 
   try {
 
