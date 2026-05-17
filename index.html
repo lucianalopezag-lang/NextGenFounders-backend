@@ -1095,13 +1095,21 @@ async function loadChallenges(){
 
 }
 
-function deleteChallenge(id){
+async function deleteChallenge(id){
 
-  challenges = challenges.filter(
-    challenge => challenge.id !== id
-  );
+  const token = localStorage.getItem("token");
 
-  renderChallenges();
+  await fetch(API + "/challenges/" + id, {
+
+    method:"DELETE",
+
+    headers:{
+      authorization: token
+    }
+
+  });
+
+  loadChallenges();
 
 }
 
