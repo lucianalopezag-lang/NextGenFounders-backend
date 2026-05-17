@@ -1023,8 +1023,21 @@ async function completeChallenge(challenge){
 
   alert(data.message);
 
-  document.getElementById("instagram-status")
-    .innerText = "Completed ✅";
+  if(challenge === "instagram"){
+
+    document.getElementById("instagram-status")
+      .innerText = "Completed ✅";
+
+    document.getElementById("followers-card")
+      .classList.remove("locked");
+
+    document.getElementById("followers-card")
+      .classList.add("active");
+
+    document.getElementById("followers-text")
+      .innerText = "In Progress 👀";
+
+  }
 
   loadProgress();
 
