@@ -1046,6 +1046,8 @@ async function loadChallenges(){
 
   challenges.forEach(challenge => {
 
+  if(completed.includes(challenge.id)) return;
+
     html += `
 
       <div class="challenge-card active">
