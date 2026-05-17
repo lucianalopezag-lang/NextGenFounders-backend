@@ -1121,6 +1121,21 @@ async function deleteChallenge(id){
   loadChallenges();
 
 }
+function completeChallenge(id){
+
+  const card = event.target.closest(".challenge-card");
+
+  card.style.opacity = "0";
+
+  card.style.transform = "scale(0.95)";
+
+  setTimeout(() => {
+
+    card.remove();
+
+  }, 300);
+
+}
 
 function closeAdmin(){
 
