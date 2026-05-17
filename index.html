@@ -1123,17 +1123,23 @@ async function deleteChallenge(id){
 }
 function completeChallenge(id){
 
-  const card = event.target.closest(".challenge-card");
+  let completed =
+    JSON.parse(
+      localStorage.getItem("completedChallenges")
+    ) || [];
 
-  card.style.opacity = "0";
+  if(!completed.includes(id)){
 
-  card.style.transform = "scale(0.95)";
+    completed.push(id);
 
-  setTimeout(() => {
+  }
 
-    card.remove();
+  localStorage.setItem(
+    "completedChallenges",
+    JSON.stringify(completed)
+  );
 
-  }, 300);
+  loadChallenges();
 
 }
 
