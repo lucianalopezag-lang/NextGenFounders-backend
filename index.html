@@ -1016,24 +1016,20 @@ async function completeChallenge(challenge){
 
   alert(data.message);
 
-  if(challenge === "instagram"){
+  document.getElementById("instagram-status")
+    .innerText = "Completed ✅";
 
-    document.getElementById("instagram-status")
-      .innerText = "Completed ✅";
+  const followersCard =
+    document.getElementById("followers-card");
 
-    const followersCard =
-  document.getElementById("followers-card");
+  followersCard.classList.remove("locked");
 
-followersCard.classList.remove("locked");
+  followersCard.classList.add("active");
 
-followersCard.classList.add("active");
+  followersCard.style.opacity = "1";
 
-followersCard.style.opacity = "1";
-
-    document.getElementById("followers-text")
-      .innerText = "In Progress 👀";
-
-  }
+  document.getElementById("followers-text")
+    .innerText = "In Progress 👀";
 
   loadProgress();
 
