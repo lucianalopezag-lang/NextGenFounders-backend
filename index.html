@@ -998,6 +998,99 @@ async function deleteLesson(id){
   openResources();
 
 }
+
+let challenges = [];
+
+function createChallenge(){
+
+  const challenge = {
+
+    id: Date.now(),
+
+    title: challengeTitle.value,
+
+    icon: challengeIcon.value,
+
+    xp: challengeXP.value
+
+  };
+
+  challenges.push(challenge);
+
+  renderChallenges();
+
+}
+
+function renderChallenges(){
+
+  let html = "";
+
+  challenges.forEach(challenge => {
+
+    html += `
+
+      <div class="challenge-card active">
+
+        <div class="challenge-header">
+
+          <span class="challenge-icon">
+            ${challenge.icon}
+          </span>
+
+          <div>
+
+            <h3>${challenge.title}</h3>
+
+            <p>
+              Reward: ${challenge.xp} XP
+            </p>
+
+          </div>
+
+        </div>
+
+        <button
+        class="mini-complete-btn">
+
+          Complete
+
+        </button>
+
+        <button
+        onclick="deleteChallenge(${challenge.id})"
+        class="auth-btn">
+
+          Delete
+
+        </button>
+
+        <div class="progress-bar">
+
+          <div class="progress-fill medium"></div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+  document.getElementById("challenges-container")
+    .innerHTML = html;
+
+}
+
+function deleteChallenge(id){
+
+  challenges = challenges.filter(
+    challenge => challenge.id !== id
+  );
+
+  renderChallenges();
+
+}
+
 function closeAdmin(){
 
   document.getElementById("admin-panel")
