@@ -497,6 +497,10 @@ app.post("/posts", auth, async (req, res) => {
       "INSERT INTO posts (user_name, content, link) VALUES ($1, $2, $3)",
       [user.name, content, link]
     );
+await pool.query(
+  "UPDATE user_progress SET xp = xp + 20 WHERE user_id = $1",
+  [req.user.id]
+);
 
     res.json({
       message: "Post created"
