@@ -1001,23 +1001,32 @@ async function deleteLesson(id){
 
 let challenges = [];
 
-function createChallenge(){
+async function createChallenge(){
 
-  const challenge = {
+  const token = localStorage.getItem("token");
 
-    id: Date.now(),
+  await fetch(API + "/challenges", {
 
-    title: challengeTitle.value,
+    method:"POST",
 
-    icon: challengeIcon.value,
+    headers:{
+      "Content-Type":"application/json",
+      authorization: token
+    },
 
-    xp: challengeXP.value
+    body: JSON.stringify({
 
-  };
+      title: challengeTitle.value,
 
-  challenges.push(challenge);
+      icon: challengeIcon.value,
 
-  renderChallenges();
+      xp: challengeXP.value
+
+    })
+
+  });
+
+  loadChallenges();
 
 }
 
