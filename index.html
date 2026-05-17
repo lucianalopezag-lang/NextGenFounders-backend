@@ -1039,6 +1039,10 @@ async function loadChallenges(){
   const challenges = await res.json();
 
   let html = "";
+  const completed =
+  JSON.parse(
+    localStorage.getItem("completedChallenges")
+  ) || [];
 
   challenges.forEach(challenge => {
 
