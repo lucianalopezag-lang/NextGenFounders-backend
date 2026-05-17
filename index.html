@@ -1030,7 +1030,11 @@ async function createChallenge(){
 
 }
 
-function renderChallenges(){
+async function loadChallenges(){
+
+  const res = await fetch(API + "/challenges");
+
+  const challenges = await res.json();
 
   let html = "";
 
@@ -1058,20 +1062,21 @@ function renderChallenges(){
 
         </div>
 
-        <button
-        class="mini-complete-btn">
+        ${
+          currentUserRole === "admin"
+          ?
+          `
+          <button
+          onclick="deleteChallenge(${challenge.id})"
+          class="auth-btn">
 
-          Complete
+            Delete
 
-        </button>
-
-        <button
-        onclick="deleteChallenge(${challenge.id})"
-        class="auth-btn">
-
-          Delete
-
-        </button>
+          </button>
+          `
+          :
+          ""
+        }
 
         <div class="progress-bar">
 
