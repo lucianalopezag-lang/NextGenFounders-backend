@@ -1039,11 +1039,14 @@ async function completeChallenge(challenge){
     document.getElementById("instagram-status")
       .innerText = "Completed ✅";
 
-    document.getElementById("followers-card")
-      .classList.remove("locked");
+    const followersCard =
+  document.getElementById("followers-card");
 
-    document.getElementById("followers-card")
-      .classList.add("active");
+followersCard.classList.remove("locked");
+
+followersCard.classList.add("active");
+
+followersCard.style.opacity = "1";
 
     document.getElementById("followers-text")
       .innerText = "In Progress 👀";
