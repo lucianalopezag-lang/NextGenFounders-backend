@@ -109,6 +109,28 @@ const pool = new Pool({
 
   }
 })();
+
+(async () => {
+  try {
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS user_challenges (
+        id SERIAL PRIMARY KEY,
+        user_id INT,
+        challenge TEXT,
+        completed BOOLEAN DEFAULT false
+      )
+    `);
+
+    console.log("Challenges table ready");
+
+  } catch (err) {
+
+    console.error("Error creating challenges table", err);
+
+  }
+})();
+
 (async () => {
   try {
 
