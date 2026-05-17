@@ -477,6 +477,45 @@ app.post("/announcements", auth, async (req, res) => {
   }
 
 });
+
+let challenges = [];
+
+app.post("/challenges", (req, res) => {
+
+  const challenge = {
+    id: Date.now(),
+    title: req.body.title,
+    icon: req.body.icon,
+    xp: req.body.xp
+  };
+
+  challenges.push(challenge);
+
+  res.json({
+    message: "Challenge created"
+  });
+
+});
+
+app.get("/challenges", (req, res) => {
+
+  res.json(challenges);
+
+});
+
+app.delete("/challenges/:id", (req, res) => {
+
+  challenges = challenges.filter(
+    challenge =>
+      challenge.id != req.params.id
+  );
+
+  res.json({
+    message: "Challenge deleted"
+  });
+
+});
+
 // GET POSTS
 
 app.get("/posts", async (req, res) => {
