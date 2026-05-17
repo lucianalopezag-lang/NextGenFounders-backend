@@ -622,6 +622,45 @@ app.delete("/lessons/:id", auth, async (req, res) => {
 
 });
 
+app.post("/complete-challenge", auth, async (req, res) => {
+
+  const { challenge } = req.body;
+
+  try {
+
+    const existing = await pool.query(
+      "SELECT * FROM user_challenges WHERE user_id = $1 AND challenge = $2",
+      [req.user.id, challenge]
+    );
+
+    if(existing.rows.length > 0){
+      return res.send("Already completed");
+    }
+
+    await pool.query(
+      "INSERT INTO user_challenges (user_id, challenge, completed) VALUES ($1, $2, $3)",
+      [req.user.id, challenge, true]
+    );
+
+    await pool.query(
+      "UPDATE user_progress SET xp = xp + 50 WHERE user_id = $1",
+      [req.user.id]
+    );
+
+    res.json({
+      message: "Challenge completed 🚀"
+    });
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error completing challenge");
+
+  }
+
+});
+
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
