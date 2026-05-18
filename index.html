@@ -780,6 +780,16 @@ ${
   placeholder="Write a reply..."
   class="reply-input">
 
+  <div class="reply-actions">
+
+  <button
+  onclick="toggleReplies(${post.id})"
+  class="show-replies-btn">
+
+    Replies
+
+  </button>
+
   <button
   onclick="createReply(${post.id})"
   class="reply-btn">
@@ -788,8 +798,13 @@ ${
 
   </button>
 
-  <div id="replies-${post.id}">
-  </div>
+</div>
+
+  <div
+id="replies-${post.id}"
+class="hidden-replies">
+
+</div>
 
 </div>
 
@@ -1053,6 +1068,17 @@ async function loadReplies(postId){
   document.getElementById(
     `replies-${postId}`
   ).innerHTML = html;
+
+}
+
+function toggleReplies(postId){
+
+  const replies =
+    document.getElementById(
+      `replies-${postId}`
+    );
+
+  replies.classList.toggle("show-replies");
 
 }
 
