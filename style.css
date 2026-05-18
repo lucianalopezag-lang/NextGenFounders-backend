@@ -628,3 +628,34 @@ body{
   transform:scale(1.04);
 
 }
+
+.post-actions{
+
+  margin-top:14px;
+
+}
+
+.like-btn{
+
+  border:none;
+
+  background:#ffe3ec;
+
+  color:#ff4f87;
+
+  padding:10px 16px;
+
+  border-radius:14px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.2s;
+}
+
+.like-btn:hover{
+
+  transform:scale(1.05);
+
+}
