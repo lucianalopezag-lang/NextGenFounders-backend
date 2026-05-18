@@ -430,7 +430,7 @@ async function loadUser(){
   const user = await res.json();
 
   document.getElementById("welcome-name").innerText =
-    `Welcome back, ${user.name} ✨`;
+    Welcome back, ${user.name || "Founder"} ✨
 
   document.getElementById("welcome-country").innerText =
     `Founder from ${user.country}`;
