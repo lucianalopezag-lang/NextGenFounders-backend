@@ -186,6 +186,7 @@ app.post("/register", async (req, res) => {
   age,
   country
 } = req.body;
+const safeName = name?.trim() || "Founder";
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
