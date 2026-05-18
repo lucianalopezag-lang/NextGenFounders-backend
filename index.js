@@ -179,7 +179,13 @@ const admins = [
 
 // REGISTER
 app.post("/register", async (req, res) => {
-  const { name, email, password, age, country } = req.body;
+  const {
+  name = "Founder",
+  email,
+  password,
+  age,
+  country
+} = req.body;
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
