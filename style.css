@@ -974,3 +974,34 @@ body{
   border-top:1px solid #f1f1f1;
 
 }
+
+#postContent{
+
+  width: 100%;
+  min-height: 140px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 24px;
+
+  background: #f4f4f4;
+
+  padding: 24px;
+
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+
+  resize: vertical;
+
+  margin-bottom: 18px;
+
+  box-sizing: border-box;
+
+}
+
+#postContent::placeholder{
+
+  color: #9b9b9b;
+
+}
