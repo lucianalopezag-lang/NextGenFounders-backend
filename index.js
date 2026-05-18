@@ -154,6 +154,27 @@ const pool = new Pool({
 
 (async () => {
   try {
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS replies (
+        id SERIAL PRIMARY KEY,
+        post_id INT,
+        user_name TEXT,
+        content TEXT
+      )
+    `);
+
+    console.log("Replies table ready");
+
+  } catch (err) {
+
+    console.error("Error creating replies table", err);
+
+  }
+})();
+
+(async () => {
+  try {
     await pool.query("SELECT 1");
     console.log("DB connected");
   } catch (err) {
