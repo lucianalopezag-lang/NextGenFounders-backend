@@ -954,7 +954,31 @@ async function openResources(){
 
 }
 
+function toggleResource(id){
 
+  const content =
+    document.getElementById(
+      `resource-${id}`
+    );
+
+  const arrow =
+    document.getElementById(
+      `arrow-${id}`
+    );
+
+  content.classList.toggle("show-replies");
+
+  if(content.classList.contains("show-replies")){
+
+    arrow.innerText = "−";
+
+  } else {
+
+    arrow.innerText = "+";
+
+  }
+
+}
 
 function closeResources(){
 
