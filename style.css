@@ -659,3 +659,55 @@ body{
   transform:scale(1.05);
 
 }
+
+.reply-section{
+
+  margin-top:18px;
+
+}
+
+.reply-input{
+
+  width:100%;
+
+  padding:12px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:#f4f4f4;
+
+  margin-bottom:10px;
+
+}
+
+.reply-btn{
+
+  border:none;
+
+  background:black;
+
+  color:white;
+
+  padding:10px 16px;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  margin-bottom:14px;
+
+}
+
+.reply-card{
+
+  background:#fafafa;
+
+  padding:12px;
+
+  border-radius:14px;
+
+  margin-top:10px;
+
+}
