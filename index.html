@@ -945,6 +945,24 @@ function closeLevels(){
 
 }
 
+async function likePost(id){
+
+  const token = localStorage.getItem("token");
+
+  await fetch(API + "/posts/" + id + "/like", {
+
+    method: "POST",
+
+    headers:{
+      authorization: token
+    }
+
+  });
+
+  openCommunity();
+
+}
+
 function closeCommunity(){
 
   document.getElementById("community-page")
