@@ -240,7 +240,6 @@ const auth = (req, res, next) => {
   }
 };
 
-app.get("/me", auth, async (req, res) => {
 app.get("/progress", auth, async (req, res) => {
 
   try {
@@ -257,6 +256,27 @@ app.get("/progress", auth, async (req, res) => {
     console.error(err);
 
     res.status(500).send("Error fetching progress");
+
+  }
+
+});
+
+app.get("/me", auth, async (req, res) => {
+
+  try {
+
+    const result = await pool.query(
+      "SELECT id, name, email, country, role FROM users WHERE id = $1",
+      [req.user.id]
+    );
+
+    res.json(result.rows[0]);
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error fetching user");
 
   }
 
@@ -409,11 +429,9 @@ app.post("/lessons", auth, async (req, res) => {
   try {
 
     await pool.query(
-      INSERT INTO lessons
-(module_id, title, content, link)
-VALUES ($1, $2, $3, $4)
-      [module_id, title, content, link]
-    );
+  "INSERT INTO lessons (module_id, title, content, link) VALUES ($1, $2, $3, $4)",
+  [module_id, title, content, link]
+);
 
     res.json({
       message: "Lesson created"
