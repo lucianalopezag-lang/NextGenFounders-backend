@@ -367,7 +367,6 @@ class="module-page hidden">
   <div id="resources-container"></div>
 
 </section>
-</section>   <!-- resources -->
 
 <section id="levels-page"
 class="module-page hidden">
@@ -400,9 +399,6 @@ id="challenges-container">
 
 </div>
 
-  </div>
-
-</div>
 
 </section>
 
@@ -752,19 +748,21 @@ async function openCommunity(){
 </div>
 
         ${
-          post.link
-          ?
-          <a
-  href="${post.link}"
-  target="_blank"
-  class="post-link">
+  post.link
+  ?
+  `
+  <a
+    href="${post.link}"
+    target="_blank"
+    class="post-link">
 
-  Visit Link ↗
+    Visit Link ↗
 
-</a>
-          :
-          ""
-        }
+  </a>
+  `
+  :
+  ""
+}
 
 ${
   currentUserRole === "admin"
