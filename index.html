@@ -237,8 +237,12 @@ class="module-page hidden">
   <input id="lessonTitle"
   placeholder="Lesson title">
 
-  <input id="lessonContent"
-  placeholder="Lesson content">
+  <textarea id="lessonContent"
+placeholder="Lesson content"
+class="admin-textarea"></textarea>
+
+<input id="lessonLink"
+placeholder="Optional resource link">
 
   <button onclick="createLesson()"
   class="auth-btn">
@@ -599,7 +603,8 @@ async function createLesson(){
 
       title: lessonTitle.value,
 
-      content: lessonContent.value
+      content: lessonContent.value,
+link: lessonLink.value
 
     })
 
