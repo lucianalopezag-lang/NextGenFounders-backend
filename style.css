@@ -932,3 +932,45 @@ body{
   line-height:1.6;
 
 }
+
+.resource-card{
+
+  padding:26px 30px;
+
+}
+
+.resource-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  cursor:pointer;
+
+}
+
+.resource-header h2{
+
+  font-size:22px;
+
+}
+
+.resource-header span{
+
+  font-size:28px;
+
+  font-weight:700;
+
+}
+
+.resource-content{
+
+  margin-top:24px;
+
+  padding-top:20px;
+
+  border-top:1px solid #f1f1f1;
+
+}
