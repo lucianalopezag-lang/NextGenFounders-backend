@@ -729,11 +729,15 @@ async function openCommunity(){
 
     html += `
 
-      <div class="lesson-card">
+      <div class="post-card">
 
-        <h3>${post.user_name}</h3>
+        <h3 class="post-user">
+  ${post.user_name || "Founder"}
+</h3>
 
-        <p>${post.content}</p>
+<p class="post-content">
+  ${post.content}
+</p>
         
         <div class="post-actions">
 
@@ -750,9 +754,14 @@ async function openCommunity(){
         ${
           post.link
           ?
-          `<a href="${post.link}" target="_blank">
-            ${post.link}
-          </a>`
+          <a
+  href="${post.link}"
+  target="_blank"
+  class="post-link">
+
+  Visit Link ↗
+
+</a>
           :
           ""
         }
