@@ -723,6 +723,65 @@ app.post("/posts/:id/like", auth, async (req, res) => {
 
 });
 
+app.post("/replies", auth, async (req, res) => {
+
+  const { post_id, content } = req.body;
+
+  try {
+
+    const userResult = await pool.query(
+      "SELECT name FROM users WHERE id = $1",
+      [req.user.id]
+    );
+
+    const user = userResult.rows[0];
+
+    await pool.query(
+
+      "INSERT INTO replies (post_id, user_name, content) VALUES ($1, $2, $3)",
+
+      [post_id, user.name, content]
+
+    );
+
+    res.json({
+      message: "Reply created"
+    });
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error creating reply");
+
+  }
+
+});
+
+app.get("/replies/:postId", async (req, res) => {
+
+  try {
+
+    const result = await pool.query(
+
+      "SELECT * FROM replies WHERE post_id = $1 ORDER BY id ASC",
+
+      [req.params.postId]
+
+    );
+
+    res.json(result.rows);
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error loading replies");
+
+  }
+
+});
+
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
