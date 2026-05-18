@@ -700,6 +700,29 @@ app.post("/complete-challenge", auth, async (req, res) => {
 
 });
 
+app.post("/posts/:id/like", auth, async (req, res) => {
+
+  try {
+
+    await pool.query(
+      "UPDATE posts SET likes = likes + 1 WHERE id = $1",
+      [req.params.id]
+    );
+
+    res.json({
+      message: "Post liked ❤️"
+    });
+
+  } catch(err){
+
+    console.error(err);
+
+    res.status(500).send("Error liking post");
+
+  }
+
+});
+
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
