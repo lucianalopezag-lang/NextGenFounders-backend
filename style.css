@@ -316,7 +316,7 @@ body{
   margin-top:40px;
 
   display:grid;
-  gap:24px;
+  gap:34px;
 }
 
 .announcement-image{
@@ -327,9 +327,15 @@ body{
 
 .lesson-card{
   background:white;
-  padding:28px;
-  border-radius:28px;
+  padding:32px;
+  border-radius:32px;
   box-shadow:0 10px 30px rgba(0,0,0,0.05);
+
+  margin-bottom:32px;
+
+  display:flex;
+  flex-direction:column;
+  gap:18px;
 }
 
 .lesson-card h2{
@@ -747,5 +753,16 @@ body{
 .show-replies{
 
   display:block;
+
+}
+
+#posts-container,
+#resources-container{
+
+  display:flex;
+  flex-direction:column;
+  gap:34px;
+
+  margin-top:34px;
 
 }
