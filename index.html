@@ -734,6 +734,18 @@ async function openCommunity(){
         <h3>${post.user_name}</h3>
 
         <p>${post.content}</p>
+        
+        <div class="post-actions">
+
+  <button
+  onclick="likePost(${post.id})"
+  class="like-btn">
+
+    ❤️ ${post.likes || 0}
+
+  </button>
+
+</div>
 
         ${
           post.link
