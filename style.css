@@ -711,3 +711,41 @@ body{
   margin-top:10px;
 
 }
+
+.reply-actions{
+
+  display:flex;
+
+  gap:10px;
+
+  margin-top:12px;
+
+}
+
+.show-replies-btn{
+
+  border:none;
+
+  background:#f3f3f3;
+
+  padding:10px 14px;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  font-weight:600;
+
+}
+
+.hidden-replies{
+
+  display:none;
+
+}
+
+.show-replies{
+
+  display:block;
+
+}
