@@ -802,6 +802,11 @@ ${
   document.getElementById("posts-container")
     .innerHTML = html;
 
+posts.forEach(post => {
+
+  loadReplies(post.id);
+
+});
 }
 
 
@@ -980,6 +985,74 @@ async function likePost(id){
   });
 
   openCommunity();
+
+}
+
+async function createReply(postId){
+
+  const token = localStorage.getItem("token");
+
+  const content =
+    document.getElementById(
+      `reply-input-${postId}`
+    ).value;
+
+  await fetch(API + "/replies", {
+
+    method:"POST",
+
+    headers:{
+      "Content-Type":"application/json",
+      authorization: token
+    },
+
+    body: JSON.stringify({
+
+      post_id: postId,
+
+      content
+
+    })
+
+  });
+
+  loadReplies(postId);
+
+}
+
+async function loadReplies(postId){
+
+  const res = await fetch(
+    API + "/replies/" + postId
+  );
+
+  const replies = await res.json();
+
+  let html = "";
+
+  replies.forEach(reply => {
+
+    html += `
+
+      <div class="reply-card">
+
+        <strong>
+          ${reply.user_name}
+        </strong>
+
+        <p>
+          ${reply.content}
+        </p>
+
+      </div>
+
+    `;
+
+  });
+
+  document.getElementById(
+    `replies-${postId}`
+  ).innerHTML = html;
 
 }
 
