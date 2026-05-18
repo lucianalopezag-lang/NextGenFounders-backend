@@ -399,13 +399,20 @@ app.post("/lessons", auth, async (req, res) => {
     return res.status(403).send("Not allowed");
   }
 
-  const { module_id, title, content } = req.body;
+  const {
+  module_id,
+  title,
+  content,
+  link
+} = req.body;
 
   try {
 
     await pool.query(
-      "INSERT INTO lessons (module_id, title, content) VALUES ($1, $2, $3)",
-      [module_id, title, content]
+      INSERT INTO lessons
+(module_id, title, content, link)
+VALUES ($1, $2, $3, $4)
+      [module_id, title, content, link]
     );
 
     res.json({
