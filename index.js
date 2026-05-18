@@ -195,7 +195,7 @@ const role = admins.includes(email) ? "admin" : "user";
 try {
   const newUser = await pool.query(
   "INSERT INTO users (name, email, password, age, country, role) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id",
-  [name, email, hashedPassword, age, country, role]
+  [safeName, email, hashedPassword, age, country, role]
 );
 
 await pool.query(
