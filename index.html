@@ -887,32 +887,66 @@ async function openResources(){
 
     html += `
 
-      <div class="lesson-card">
+  <div class="lesson-card resource-card">
 
-        <h2>${lesson.title}</h2>
+    <div
+    class="resource-header"
+    onclick="toggleResource(${lesson.id})">
 
-        <p>${lesson.content}</p>
+      <h2>${lesson.title}</h2>
 
-${
-  currentUserRole === "admin"
-  ?
-  `
-  <button
-  onclick="deleteLesson(${lesson.id})"
-  class="auth-btn">
+      <span id="arrow-${lesson.id}">
+        +
+      </span>
 
-  Delete
+    </div>
 
-  </button>
-  `
-  :
-  ""
-}
+    <div
+    id="resource-${lesson.id}"
+    class="resource-content hidden-replies">
 
-      </div>
+      <p>
+        ${lesson.content.replace(/\n/g, "<br>")}
+      </p>
 
-    `;
+      ${
+        lesson.link
+        ?
+        `
+        <a
+        href="${lesson.link}"
+        target="_blank"
+        class="post-link">
 
+          Open Resource ↗
+
+        </a>
+        `
+        :
+        ""
+      }
+
+      ${
+        currentUserRole === "admin"
+        ?
+        `
+        <button
+        onclick="deleteLesson(${lesson.id})"
+        class="auth-btn">
+
+          Delete
+
+        </button>
+        `
+        :
+        ""
+      }
+
+    </div>
+
+  </div>
+
+`;
   });
 
   document.getElementById("resources-container")
