@@ -773,6 +773,26 @@ ${
   ""
 }
 
+<div class="reply-section">
+
+  <input
+  id="reply-input-${post.id}"
+  placeholder="Write a reply..."
+  class="reply-input">
+
+  <button
+  onclick="createReply(${post.id})"
+  class="reply-btn">
+
+    Reply
+
+  </button>
+
+  <div id="replies-${post.id}">
+  </div>
+
+</div>
+
       </div>
 
     `;
