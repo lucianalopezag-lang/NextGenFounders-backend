@@ -3,1382 +3,307 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>NextGen Founders</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>NextGen Founders ✦ Build ideas that matter ✦ Join the community ✦ Empowering young founders ✦ NextGen Founders ✦ Build ideas that matter ✦ Join the community ✦ Empowering young founders ✦ NextGen Founders ✦ Build ideas that matter ✦ Join the community ✦ Empowering young founders ✦</span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-    <div class="logo">NextGen Founders</div>
+  <div class="logo">NextGen<span>Founders</span></div>
+  <div class="nav-buttons">
+    <button class="nav-login" onclick="scrollToAuth()">Login</button>
+    <button class="nav-join" onclick="scrollToAuth()">Join Free</button>
+  </div>
+</nav>
 
-    <div class="nav-buttons">
-      <button class="nav-login">Login</button>
-      <button class="nav-join">Join</button>
-    </div>
-  </nav>
-
+<!-- HERO -->
 <section class="hero" id="hero">
-
-    <div class="hero-text">
-
-      <p class="small-tag">
-        THE NEXT GENERATION OF FOUNDERS
-      </p>
-
-      <h1>
-        Build ideas that actually matter.
-      </h1>
-
-      <p class="subtitle">
-        Learn, create and grow with ambitious young founders around the world.
-      </p>
-
-      <div class="hero-buttons">
-        <button class="primary-btn">
-          Join Community
-        </button>
-
-        <button class="secondary-btn">
-          Explore
-        </button>
-      </div>
-
+  <div class="hero-text">
+    <p class="small-tag">✦ THE NEXT GENERATION OF FOUNDERS</p>
+    <h1>Build ideas that <span class="highlight">actually</span> matter.</h1>
+    <p class="subtitle">Learn, create and grow with ambitious young founders around the world.</p>
+    <div class="hero-buttons">
+      <button class="primary-btn" onclick="scrollToAuth()">Join Community →</button>
+      <button class="secondary-btn" onclick="scrollToAuth()">Explore</button>
     </div>
+  </div>
+  <div class="hero-card">
+    <h3>Inside the community ✨</h3>
+    <div class="mini-card yellow-bg">🚀 Startup Challenges</div>
+    <div class="mini-card lila-bg">🧠 Mentorship Sessions</div>
+    <div class="mini-card red-bg">🌍 Founder Community</div>
+    <div class="mini-card ice-bg">📚 Creative Learning</div>
+  </div>
+</section>
 
-    <div class="hero-card">
+<!-- AUTH SECTION -->
+<section class="auth-section" id="auth-section">
+  <div class="auth-box">
+    <h2>Create Account</h2>
+    <input id="name" placeholder="Full name">
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <input id="age" placeholder="Age">
+    <input id="country" placeholder="Country">
+    <button onclick="register()" class="auth-btn">Create account →</button>
+    <p id="register-result" class="form-result"></p>
+  </div>
+  <div class="auth-box">
+    <h2>Welcome Back</h2>
+    <input id="loginEmail" placeholder="Email">
+    <input id="loginPassword" type="password" placeholder="Password">
+    <button onclick="login()" class="auth-btn">Login →</button>
+    <p id="login-result" class="form-result"></p>
+  </div>
+</section>
 
-      <h3>Inside the community ✨</h3>
-
-      <div class="mini-card pink">
-        Startup Challenges
-      </div>
-
-      <div class="mini-card yellow">
-        Mentorship Sessions
-      </div>
-
-      <div class="mini-card purple">
-        Founder Community
-      </div>
-
-      <div class="mini-card cream">
-        Creative Learning
-      </div>
-
-    </div>
-
-  </section>
-
-  <section class="auth-section">
-
-    <div class="auth-box">
-
-      <h2>Create Account</h2>
-
-      <input id="name" placeholder="Name">
-      <input id="email" placeholder="Email">
-      <input id="password" type="password" placeholder="Password">
-      <input id="age" placeholder="Age">
-      <input id="country" placeholder="Country">
-
-      <button onclick="register()" class="auth-btn">
-        Create account
-      </button>
-
-    </div>
-
-    <div class="auth-box">
-
-      <h2>Welcome Back</h2>
-
-      <input id="loginEmail" placeholder="Email">
-      <input id="loginPassword" type="password" placeholder="Password">
-
-      <button onclick="login()" class="auth-btn">
-        Login
-      </button>
-
-    </div>
-
-  </section>
-
-  <p id="result"></p>
-  <section id="dashboard" class="dashboard hidden">
+<!-- DASHBOARD -->
+<section id="dashboard" class="dashboard hidden">
 
   <div class="dashboard-header">
-
     <div>
-      <p class="dashboard-tag">WELCOME BACK ✨</p>
+      <p class="dashboard-tag">✦ WELCOME BACK</p>
       <h2 id="welcome-name">Your Founder Space</h2>
-
-<p id="welcome-country"></p>
+      <p id="welcome-meta"></p>
     </div>
-<button id="admin-btn"
-onclick="openAdmin()"
-class="logout-btn hidden">
-
-  Admin
-
-</button>
-    <button onclick="logout()" class="logout-btn">
-      Logout
-    </button>
-
+    <div class="header-actions">
+      <div class="notif-wrapper">
+        <button class="icon-btn" onclick="openNotifications()">🔔
+          <span id="notif-badge" class="notif-badge hidden">0</span>
+        </button>
+      </div>
+      <button class="icon-btn" onclick="openProfile()">👤</button>
+      <button id="admin-btn" onclick="openAdmin()" class="pill-btn burgundy hidden">Admin ⚡</button>
+      <button onclick="logout()" class="pill-btn outline">Logout</button>
+    </div>
   </div>
 
- <div class="dashboard-grid">
-
-  <div class="dashboard-card purple-card"
-onclick="openAnnouncements()">
-
-    <h3>Announcements</h3>
-
-    <p>
-      News, updates and important information.
-    </p>
-
+  <!-- LEVEL BAR -->
+  <div class="level-bar-section">
+    <div class="level-info">
+      <span id="level-badge" class="level-badge">🌱 Seedling</span>
+      <span id="xp-display">0 XP</span>
+    </div>
+    <div class="xp-bar">
+      <div id="xp-fill" class="xp-fill"></div>
+    </div>
+    <p id="xp-next" class="xp-next"></p>
   </div>
 
-  <div class="dashboard-card yellow-card"
-  onclick="openCommunity()">
-
-    <h3>Community</h3>
-
-    <p>
-      Connect and interact with other founders.
-    </p>
-
+  <div class="dashboard-grid">
+    <div class="dashboard-card yellow-card" onclick="openAnnouncements()">
+      <div class="card-icon">📢</div>
+      <h3>Announcements</h3>
+      <p>News, updates and important information.</p>
+    </div>
+    <div class="dashboard-card lila-card" onclick="openCommunity()">
+      <div class="card-icon">🌍</div>
+      <h3>Community</h3>
+      <p>Connect and interact with other founders.</p>
+    </div>
+    <div class="dashboard-card red-card" onclick="openResources()">
+      <div class="card-icon">📚</div>
+      <h3>Resources</h3>
+      <p>Lessons, templates, guides and tools.</p>
+    </div>
+    <div class="dashboard-card ice-card" onclick="openChallenges()">
+      <div class="card-icon">🏆</div>
+      <h3>Challenges</h3>
+      <p>Complete challenges and unlock milestones.</p>
+    </div>
+    <div class="dashboard-card yellow-card" onclick="openJournal()">
+      <div class="card-icon">📓</div>
+      <h3>My Journal</h3>
+      <p>Write your ideas and organize your thoughts.</p>
+    </div>
+    <div class="dashboard-card lila-card" onclick="openProfile()">
+      <div class="card-icon">👤</div>
+      <h3>My Profile</h3>
+      <p>View your founder profile and achievements.</p>
+    </div>
   </div>
-
-  <div class="dashboard-card pink-card"
-  onclick="openResources()">
-
-    <h3>Resources</h3>
-
-    <p>
-      Lessons, templates, guides and tools.
-    </p>
-
-  </div>
-
-  <div class="dashboard-card cream-card"
-  onclick="openLevels()">
-
-    <h3>Levels & Challenges</h3>
-
-    <p>
-      Complete challenges and unlock milestones.
-    </p>
-
-  </div>
-
-</div>
-
-</section>
-<section id="module-page" class="module-page hidden">
-
-  <button onclick="closeModule()" class="back-btn">
-    ← Back
-  </button>
-
-  <h1 id="module-title"></h1>
-
-  <p id="module-description"></p>
-
-  <div class="module-lessons"
-id="lessons-container">
-
-</div>
-
-</section>
-<section id="admin-panel"
-class="module-page hidden">
-
-  <button onclick="closeAdmin()" class="back-btn">
-    ← Back
-  </button>
-
-  <h1>Admin Dashboard ⚡</h1>
-<div class="auth-box">
-
-  <h2>Create Module</h2>
-
-  <input id="moduleTitle"
-  placeholder="Module title">
-
-  <input id="moduleDescription"
-  placeholder="Description">
-
-  <input id="moduleColor"
-  placeholder="Color">
-
-  <button onclick="createModule()"
-  class="auth-btn">
-
-    Create Module
-
-  </button>
-
-</div>
-<div class="auth-box">
-
-  <h2>Create Lesson</h2>
-
-  <input id="lessonModuleId"
-  placeholder="Module ID">
-
-  <input id="lessonTitle"
-  placeholder="Lesson title">
-
-  <textarea id="lessonContent"
-placeholder="Lesson content"
-class="admin-textarea"></textarea>
-
-<input id="lessonLink"
-placeholder="Optional resource link">
-
-  <button onclick="createLesson()"
-  class="auth-btn">
-
-    Create Lesson
-
-  </button>
-
-</div>
-<div class="auth-box">
-
-  <h2>Create Announcement</h2>
-
-  <input id="announcementTitle"
-  placeholder="Title">
-
-  <textarea id="announcementContent"
-  placeholder="Content"></textarea>
-
-  <input id="announcementImage"
-  placeholder="Image URL">
-
-  <input id="announcementDate"
-  placeholder="Date">
-
-  <button onclick="createAnnouncement()"
-  class="auth-btn">
-
-    Publish Announcement
-
-  </button>
-
-</div>
-
-<div class="auth-box">
-
-  <h2>Create Challenge</h2>
-
-  <input id="challengeTitle"
-  placeholder="Challenge title">
-
-  <input id="challengeIcon"
-  placeholder="Emoji icon">
-
-  <input id="challengeXP"
-  placeholder="XP reward">
-
-  <button
-  onclick="createChallenge()"
-  class="auth-btn">
-
-    Create Challenge
-
-  </button>
-
-</div>
-
-  <div id="users-list"></div>
-
 </section>
 
-<section id="announcements-page"
-class="module-page hidden">
+<!-- NOTIFICATIONS PAGE -->
+<section id="notifications-page" class="module-page hidden">
+  <button onclick="closeNotifications()" class="back-btn">← Back</button>
+  <h1>Notifications 🔔</h1>
+  <div id="notifications-container" class="notif-list"></div>
+</section>
 
-  <button onclick="closeAnnouncements()"
-  class="back-btn">
+<!-- PROFILE PAGE -->
+<section id="profile-page" class="module-page hidden">
+  <button onclick="closeProfile()" class="back-btn">← Back</button>
+  <div class="profile-hero">
+    <div class="profile-avatar" id="profile-avatar">🚀</div>
+    <h1 id="profile-name">Founder</h1>
+    <p id="profile-country"></p>
+    <span id="profile-level-badge" class="level-badge large"></span>
+  </div>
+  <div class="profile-stats">
+    <div class="stat-card">
+      <span id="stat-xp">0</span>
+      <p>XP</p>
+    </div>
+    <div class="stat-card">
+      <span id="stat-challenges">0</span>
+      <p>Challenges</p>
+    </div>
+    <div class="stat-card">
+      <span id="stat-posts">0</span>
+      <p>Posts</p>
+    </div>
+  </div>
+  <h2 class="section-subtitle">My Posts</h2>
+  <div id="profile-posts"></div>
+</section>
 
-    ← Back
-
-  </button>
-
+<!-- ANNOUNCEMENTS PAGE -->
+<section id="announcements-page" class="module-page hidden">
+  <button onclick="closeAnnouncements()" class="back-btn">← Back</button>
   <h1>Announcements 📢</h1>
-
-  <div id="announcements-container">
-
-  </div>
-
+  <div id="announcements-container"></div>
 </section>
 
-</section>
-
-<section id="community-page"
-class="module-page hidden">
-
-  <button onclick="closeCommunity()"
-  class="back-btn">
-
-    ← Back
-
-  </button>
-
+<!-- COMMUNITY PAGE -->
+<section id="community-page" class="module-page hidden">
+  <button onclick="closeCommunity()" class="back-btn">← Back</button>
   <h1>Community 🌍</h1>
-
-  <div class="auth-box">
-
-    <textarea id="postContent"
-    placeholder="Share something with the community..."></textarea>
-
-    <input id="postLink"
-    placeholder="Optional link">
-
-    <button onclick="createPost()"
-    class="auth-btn">
-
-      Publish Post
-
-    </button>
-
+  <div class="tweet-compose">
+    <div class="tweet-compose-avatar" id="compose-avatar">🚀</div>
+    <div class="tweet-compose-right">
+      <textarea id="postContent" placeholder="What's on your founder mind?"></textarea>
+      <div class="tweet-compose-actions">
+        <input id="postLink" placeholder="Optional link" class="link-input">
+        <button onclick="createPost()" class="pill-btn burgundy">Post →</button>
+      </div>
+    </div>
   </div>
-
   <div id="posts-container"></div>
-
 </section>
-<section id="resources-page"
-class="module-page hidden">
 
-  <button onclick="closeResources()"
-  class="back-btn">
-
-    ← Back
-
-  </button>
-
+<!-- RESOURCES PAGE -->
+<section id="resources-page" class="module-page hidden">
+  <button onclick="closeResources()" class="back-btn">← Back</button>
   <h1>Resources 📚</h1>
 
+  <!-- Admin: add category inline -->
+  <div id="admin-category-form" class="admin-inline-form hidden">
+    <h3>Add Category</h3>
+    <input id="newCategoryName" placeholder="Category name (e.g. Entrepreneurship)">
+    <input id="newCategoryIcon" placeholder="Emoji icon">
+    <button onclick="createCategory()" class="pill-btn burgundy">Add Category</button>
+  </div>
+
+  <!-- Category tabs -->
+  <div id="categories-tabs" class="categories-tabs"></div>
+
+  <!-- Resources list -->
   <div id="resources-container"></div>
 
+  <!-- Admin: add resource inline -->
+  <div id="admin-resource-form" class="admin-inline-form hidden">
+    <h3>Add Resource to this Category</h3>
+    <input id="resTitle" placeholder="Resource title">
+    <textarea id="resContent" placeholder="Content"></textarea>
+    <input id="resLink" placeholder="Optional link">
+    <button onclick="createResource()" class="pill-btn burgundy">Publish Resource</button>
+  </div>
 </section>
 
-<section id="levels-page"
-class="module-page hidden">
-
-  <button onclick="closeLevels()"
-  class="back-btn">
-
-    ← Back
-
-  </button>
-
-  <h1>Levels & Challenges 🏆</h1>
-  <div class="xp-section">
-
-  <div class="xp-header">
-    <h3>Your XP</h3>
-    <span id="xp-number">0 XP</span>
+<!-- CHALLENGES PAGE -->
+<section id="challenges-page" class="module-page hidden">
+  <button onclick="closeChallenges()" class="back-btn">← Back</button>
+  <h1>Challenges 🏆</h1>
+  <div class="level-bar-section">
+    <div class="level-info">
+      <span id="challenge-level-badge" class="level-badge"></span>
+      <span id="challenge-xp-display">0 XP</span>
+    </div>
+    <div class="xp-bar">
+      <div id="challenge-xp-fill" class="xp-fill"></div>
+    </div>
   </div>
-
-  <div class="xp-bar">
-    <div id="xp-fill" class="xp-fill"></div>
-  </div>
-
-</div>
-
-
-
-  <div class="levels-container"
-id="challenges-container">
-
-</div>
-
-
+  <div id="challenges-container" class="challenges-grid"></div>
 </section>
 
-<script>
-
-const API = "https://nextgenfounders-backend-production.up.railway.app";
-let currentUserRole = "";
-
-
-async function loadUser(){
-
-  const token = localStorage.getItem("token");
-
-  if(!token) return;
-
-  const res = await fetch(API + "/me", {
-
-    headers: {
-      authorization: token
-    }
-
-  });
-
-
-  const user = await res.json();
-
-  document.getElementById("welcome-name").innerText =
-    `Welcome back, ${user.name || "Founder"} ✨`
-
-  document.getElementById("welcome-country").innerText =
-    `Founder from ${user.country}`;
-currentUserRole = user.role;
-if(user.role === "admin"){
-
-  document.getElementById("admin-btn")
-    .classList.remove("hidden");
-
-
-  }
-
-}
-
-if(localStorage.getItem("token")){
-  
-loadUser();
-  document.querySelector(".auth-section").style.display = "none";
-
-  document.getElementById("hero").style.display = "none";
-
-  document.getElementById("navbar").style.display = "none";
-
-  document.getElementById("dashboard").classList.remove("hidden");
-
-}
-async function register() {
-
-  const res = await fetch(API + "/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-
-    body: JSON.stringify({
-      name: name.value,
-      email: email.value,
-      password: password.value,
-      age: age.value,
-      country: country.value
-    })
-  });
-
-  const data = await res.text();
-
-  result.innerText = data;
-}
-
-async function login() {
-
-  const res = await fetch(API + "/login", {
-    method: "POST",
-
-    headers: {
-      "Content-Type": "application/json"
-    },
-
-    body: JSON.stringify({
-      email: loginEmail.value,
-      password: loginPassword.value
-    })
-  });
-
-  if(!res.ok){
-
-    const error = await res.text();
-
-    result.innerText = error;
-
-    return;
-  }
-
-  const data = await res.json();
-
-  localStorage.setItem("token", data.token);
-
-  result.innerText = "Logged in successfully ✨";
-
-  document.querySelector(".auth-section").style.display = "none";
-
-  document.getElementById("hero").style.display = "none";
-
-  document.getElementById("navbar").style.display = "none";
-
-  document.getElementById("dashboard").classList.remove("hidden");
-
-  loadUser();
- 
-}
-
-function logout(){
-
-  localStorage.removeItem("token");
-
-  document.querySelector(".auth-section").style.display = "flex";
-
-  document.getElementById("hero").style.display = "flex";
-
-  document.getElementById("navbar").style.display = "flex";
-
-  document.getElementById("dashboard").classList.add("hidden");
-
-}
-
-
- 
-
-function closeModule(){
-
-  document.getElementById("module-page").classList.add("hidden");
-
-  document.getElementById("dashboard").style.display = "block";
-
-}
-async function openAdmin(){
-
-  document.getElementById("dashboard")
-    .style.display = "none";
-
-  document.getElementById("admin-panel")
-    .classList.remove("hidden");
-
-  const token = localStorage.getItem("token");
-
-  const res = await fetch(API + "/users", {
-
-    headers: {
-      authorization: token
-    }
-
-  });
-
-  const users = await res.json();
-
-  let html = "";
-
-  users.forEach(user => {
-
-    html += `
-      <div class="lesson-card">
-        <h3>${user.name}</h3>
-        <p>${user.email}</p>
-        <p>${user.country}</p>
-      </div>
-    `;
-
-  });
-
-  document.getElementById("users-list").innerHTML = html;
-
-}
-
-
-async function createLesson(){
-
-  const token = localStorage.getItem("token");
-
-  const res = await fetch(API + "/lessons", {
-
-    method: "POST",
-
-    headers: {
-      "Content-Type": "application/json",
-      authorization: token
-    },
-
-    body: JSON.stringify({
-
-      module_id: lessonModuleId.value,
-
-      title: lessonTitle.value,
-
-      content: lessonContent.value,
-link: lessonLink.value
-
-    })
-
-  });
-
-  const data = await res.json();
-
-  alert(data.message);
-
-}
-async function createAnnouncement(){
-
-  const token = localStorage.getItem("token");
-
-  const res = await fetch(API + "/announcements", {
-
-    method: "POST",
-
-    headers: {
-      "Content-Type": "application/json",
-      authorization: token
-    },
-
-    body: JSON.stringify({
-
-      title: announcementTitle.value,
-
-      content: announcementContent.value,
-
-      image: announcementImage.value,
-
-      date: announcementDate.value
-
-    })
-
-  });
-
-  const data = await res.json();
-
-  alert(data.message);
-
-}
-async function openAnnouncements(){
-
-  document.getElementById("dashboard")
-    .style.display = "none";
-
-  document.getElementById("announcements-page")
-    .classList.remove("hidden");
-
-  const res = await fetch(API + "/announcements");
-
-  const announcements = await res.json();
-
-  let html = "";
-
-  announcements.forEach(item => {
-
-    html += `
-
-      <div class="lesson-card">
-
-        <img src="${item.image}"
-        class="announcement-image">
-
-        <h2>${item.title}</h2>
-
-        <p>${item.content}</p>
-
-        <small>${item.date}</small>
-        
-        ${
-  currentUserRole === "admin"
-  ?
-  `
-  <button
-  onclick="deleteAnnouncement(${item.id})"
-  class="auth-btn">
-
-  Delete
-
-  </button>
-  `
-  :
-  ""
-}
-
-      </div>
-
-    `;
-
-  });
-
-  document.getElementById("announcements-container")
-    .innerHTML = html;
-
-}
-
-function closeAnnouncements(){
-
-  document.getElementById("announcements-page")
-    .classList.add("hidden");
-
-  document.getElementById("dashboard")
-    .style.display = "block";
-
-}
-async function openCommunity(){
-
-  document.getElementById("dashboard")
-    .style.display = "none";
-
-  document.getElementById("community-page")
-    .classList.remove("hidden");
-
-  const res = await fetch(API + "/posts");
-
-  const posts = await res.json();
-
-  let html = "";
-
-  posts.forEach(post => {
-
-    html += `
-
-      <div class="post-card">
-
-        <h3 class="post-user">
-  ${post.user_name || "Founder"}
-</h3>
-
-<p class="post-content">
-  ${post.content}
-</p>
-        
-        <div class="post-actions">
-
-  <button
-  onclick="likePost(${post.id})"
-  class="like-btn">
-
-    ❤️ ${post.likes || 0}
-
-  </button>
-
-</div>
-
-        ${
-  post.link
-  ?
-  `
-  <a
-    href="${post.link}"
-    target="_blank"
-    class="post-link">
-
-    Visit Link ↗
-
-  </a>
-  `
-  :
-  ""
-}
-
-${
-  currentUserRole === "admin"
-  ?
-  `
-  <button
-  onclick="deletePost(${post.id})"
-  class="auth-btn">
-
-  Delete
-
-  </button>
-  `
-  :
-  ""
-}
-
-<div class="reply-section">
-
-  <input
-  id="reply-input-${post.id}"
-  placeholder="Write a reply..."
-  class="reply-input">
-
-  <div class="reply-actions">
-
-  <button
-  onclick="toggleReplies(${post.id})"
-  class="show-replies-btn">
-
-    Replies
-
-  </button>
-
-  <button
-  onclick="createReply(${post.id})"
-  class="reply-btn">
-
-    Reply
-
-  </button>
-
-</div>
-
-  <div
-id="replies-${post.id}"
-class="hidden-replies">
-
-</div>
-
-</div>
-
-      </div>
-
-    `;
-
-  });
-
-  document.getElementById("posts-container")
-    .innerHTML = html;
-
-posts.forEach(post => {
-
-  loadReplies(post.id);
-
-});
-}
-
-
-
-async function createPost(){
-
-  const token = localStorage.getItem("token");
-
-  const res = await fetch(API + "/posts", {
-
-    method: "POST",
-
-    headers: {
-      "Content-Type": "application/json",
-      authorization: token
-    },
-
-    body: JSON.stringify({
-
-      content: postContent.value,
-
-      link: postLink.value
-
-    })
-
-  });
-
-  const data = await res.json();
-
-  alert(data.message);
-
-  openCommunity();
-
-}
-
-async function openResources(){
-
-  document.getElementById("dashboard")
-    .style.display = "none";
-
-  document.getElementById("resources-page")
-    .classList.remove("hidden");
-
-  const res = await fetch(API + "/lessons/1");
-
-  const lessons = await res.json();
-
-  let html = "";
-
-  lessons.forEach(lesson => {
-
-    html += `
-
-  <div class="lesson-card resource-card">
-
-    <div
-    class="resource-header"
-    onclick="toggleResource(${lesson.id})">
-
-      <h2>${lesson.title}</h2>
-
-      <span id="arrow-${lesson.id}">
-        +
-      </span>
-
+<!-- CHALLENGE DETAIL PAGE -->
+<section id="challenge-detail-page" class="module-page hidden">
+  <button onclick="closeChallengeDetail()" class="back-btn">← Back to Challenges</button>
+  <div id="challenge-detail-content"></div>
+</section>
+
+<!-- JOURNAL PAGE -->
+<section id="journal-page" class="module-page hidden">
+  <button onclick="closeJournal()" class="back-btn">← Back</button>
+  <h1>My Journal 📓</h1>
+  <div class="journal-compose">
+    <input id="journalTitle" placeholder="Entry title...">
+    <textarea id="journalContent" placeholder="Write your ideas, reflections, plans..."></textarea>
+    <button onclick="saveJournalEntry()" class="pill-btn burgundy">Save Entry →</button>
+  </div>
+  <div id="journal-entries"></div>
+</section>
+
+<!-- ADMIN PANEL -->
+<section id="admin-panel" class="module-page hidden">
+  <button onclick="closeAdmin()" class="back-btn">← Back</button>
+  <h1>Admin Dashboard ⚡</h1>
+
+  <div class="admin-grid">
+
+    <div class="auth-box">
+      <h2>Create Announcement</h2>
+      <input id="announcementTitle" placeholder="Title">
+      <textarea id="announcementContent" placeholder="Content"></textarea>
+      <input id="announcementImage" placeholder="Image URL">
+      <input id="announcementDate" placeholder="Date (e.g. June 2026)">
+      <button onclick="createAnnouncement()" class="auth-btn">Publish →</button>
     </div>
 
-    <div
-    id="resource-${lesson.id}"
-    class="resource-content hidden-replies">
+    <div class="auth-box">
+      <h2>Create Category</h2>
+      <input id="adminCategoryName" placeholder="Category name (e.g. Mindset)">
+      <input id="adminCategoryIcon" placeholder="Emoji icon">
+      <button onclick="createCategoryFromAdmin()" class="auth-btn">Create Category →</button>
+    </div>
 
-      <p>
-        ${lesson.content.replace(/\n/g, "<br>")}
-      </p>
+    <div class="auth-box">
+      <h2>Create Resource</h2>
+      <input id="adminResTitle" placeholder="Resource title">
+      <textarea id="adminResContent" placeholder="Content"></textarea>
+      <input id="adminResLink" placeholder="Optional link">
+      <input id="adminResCategoryId" placeholder="Category ID">
+      <button onclick="createResourceFromAdmin()" class="auth-btn">Publish Resource →</button>
+    </div>
 
-      ${
-        lesson.link
-        ?
-        `
-        <a
-        href="${lesson.link}"
-        target="_blank"
-        class="post-link">
-
-          Open Resource ↗
-
-        </a>
-        `
-        :
-        ""
-      }
-
-      ${
-        currentUserRole === "admin"
-        ?
-        `
-        <button
-        onclick="deleteLesson(${lesson.id})"
-        class="auth-btn">
-
-          Delete
-
-        </button>
-        `
-        :
-        ""
-      }
-
+    <div class="auth-box">
+      <h2>Create Challenge</h2>
+      <input id="challengeTitle" placeholder="Challenge title">
+      <input id="challengeIcon" placeholder="Emoji icon">
+      <input id="challengeXP" placeholder="XP reward (e.g. 50)">
+      <textarea id="challengeDescription" placeholder="Task description for founders"></textarea>
+      <input id="challengeResourceId" placeholder="Linked resource ID (optional)">
+      <button onclick="createChallenge()" class="auth-btn">Create Challenge →</button>
     </div>
 
   </div>
 
-`;
-  });
-
-  document.getElementById("resources-container")
-    .innerHTML = html;
-
-}
-
-function toggleResource(id){
-
-  const content =
-    document.getElementById(
-      `resource-${id}`
-    );
-
-  const arrow =
-    document.getElementById(
-      `arrow-${id}`
-    );
-
-  content.classList.toggle("show-replies");
-
-  if(content.classList.contains("show-replies")){
-
-    arrow.innerText = "−";
-
-  } else {
-
-    arrow.innerText = "+";
-
-  }
-
-}
-
-function closeResources(){
-
-  document.getElementById("resources-page")
-    .classList.add("hidden");
-
-  document.getElementById("dashboard")
-    .style.display = "block";
-
-}
-
-async function loadProgress(){
-
-  const token = localStorage.getItem("token");
-
-  const res = await fetch(API + "/progress", {
-
-    headers:{
-      authorization: token
-    }
-
-  });
-
-  const progress = await res.json();
-
-  document.getElementById("xp-number")
-    .innerText = progress.xp + " XP";
-
-  document.getElementById("xp-fill")
-    .style.width = progress.xp + "%";
-
-}
-
-function openLevels(){
-
-  document.getElementById("dashboard")
-    .style.display = "none";
-
-  document.getElementById("levels-page")
-    .classList.remove("hidden");
-
-loadProgress();
-
-loadChallenges();
-
-}
-
-function completeChallenge(){
-
-  document.getElementById("instagram-status")
-    .innerText = "Completed ✅";
-
-  document.getElementById("instagram-progress")
-    .style.width = "100%";
-
-  document.getElementById("instagram-card")
-    .classList.remove("active");
-
-  document.getElementById("instagram-card")
-    .classList.add("completed");
-
-  document.querySelector("#instagram-card button")
-    .style.display = "none";
-
-}
-
-function closeLevels(){
-
-  document.getElementById("levels-page")
-    .classList.add("hidden");
-
-  document.getElementById("dashboard")
-    .style.display = "block";
-
-}
-
-async function likePost(id){
-
-  const token = localStorage.getItem("token");
-
-  await fetch(API + "/posts/" + id + "/like", {
-
-    method: "POST",
-
-    headers:{
-      authorization: token
-    }
-
-  });
-
-  openCommunity();
-
-}
-
-async function createReply(postId){
-
-  const token = localStorage.getItem("token");
-
-  const content =
-    document.getElementById(
-      `reply-input-${postId}`
-    ).value;
-
-  await fetch(API + "/replies", {
-
-    method:"POST",
-
-    headers:{
-      "Content-Type":"application/json",
-      authorization: token
-    },
-
-    body: JSON.stringify({
-
-      post_id: postId,
-
-      content
-
-    })
-
-  });
-
-  loadReplies(postId);
-
-}
-
-async function loadReplies(postId){
-
-  const res = await fetch(
-    API + "/replies/" + postId
-  );
-
-  const replies = await res.json();
-
-  let html = "";
-
-  replies.forEach(reply => {
-
-    html += `
-
-      <div class="reply-card">
-
-        <strong>
-          ${reply.user_name}
-        </strong>
-
-        <p>
-          ${reply.content}
-        </p>
-
-      </div>
-
-    `;
-
-  });
-
-  document.getElementById(
-    `replies-${postId}`
-  ).innerHTML = html;
-
-}
-
-function toggleReplies(postId){
-
-  const replies =
-    document.getElementById(
-      `replies-${postId}`
-    );
-
-  replies.classList.toggle("show-replies");
-
-}
-
-function closeCommunity(){
-
-  document.getElementById("community-page")
-    .classList.add("hidden");
-
-  document.getElementById("dashboard")
-    .style.display = "block";
-
-}
-
-async function deleteAnnouncement(id){
-
-  const token = localStorage.getItem("token");
-
-  await fetch(API + "/announcements/" + id, {
-
-    method: "DELETE",
-
-    headers: {
-      authorization: token
-    }
-
-  });
-
-  openAnnouncements();
-
-}
-
-
-
-async function deletePost(id){
-
-  const token = localStorage.getItem("token");
-
-  await fetch(API + "/posts/" + id, {
-
-    method: "DELETE",
-
-    headers: {
-      authorization: token
-    }
-
-  });
-
-  openCommunity();
-
-}
-
-
-
-async function deleteLesson(id){
-
-  const token = localStorage.getItem("token");
-
-  await fetch(API + "/lessons/" + id, {
-
-    method: "DELETE",
-
-    headers: {
-      authorization: token
-    }
-
-  });
-
-  openResources();
-
-}
-
-let challenges = [];
-
-async function createChallenge(){
-
-  const token = localStorage.getItem("token");
-
-  await fetch(API + "/challenges", {
-
-    method:"POST",
-
-    headers:{
-      "Content-Type":"application/json",
-      authorization: token
-    },
-
-    body: JSON.stringify({
-
-      title: challengeTitle.value,
-
-      icon: challengeIcon.value,
-
-      xp: challengeXP.value
-
-    })
-
-  });
-
-  loadChallenges();
-
-}
-
-async function loadChallenges(){
-
-  const res = await fetch(API + "/challenges");
-
-  const challenges = await res.json();
-
-  let html = "";
-  const completed =
-  JSON.parse(
-    localStorage.getItem("completedChallenges")
-  ) || [];
-
-  challenges.forEach(challenge => {
-
-  if(completed.includes(challenge.id)) return;
-
-    html += `
-
-      <div class="challenge-card active">
-
-        <div class="challenge-header">
-
-          <span class="challenge-icon">
-            ${challenge.icon}
-          </span>
-
-          <div>
-
-            <h3>${challenge.title}</h3>
-
-            <p>
-              Reward: ${challenge.xp} XP
-            </p>
-
-          </div>
-
-        </div>
-
-        ${
-          currentUserRole === "admin"
-          ?
-          `
-          <button
-          onclick="deleteChallenge(${challenge.id})"
-          class="auth-btn">
-
-            Delete
-
-          </button>
-          `
-          :
-          ""
-        }
-       <button
-onclick="completeChallenge(${challenge.id})"
-class="mini-complete-btn">
-
-  Complete
-
-</button>
-
-        <div class="progress-bar">
-
-          <div class="progress-fill medium"></div>
-
-        </div>
-
-      </div>
-
-    `;
-
-  });
-
-  document.getElementById("challenges-container")
-    .innerHTML = html;
-
-}
-
-async function deleteChallenge(id){
-
-  const token = localStorage.getItem("token");
-
-  await fetch(API + "/challenges/" + id, {
-
-    method:"DELETE",
-
-    headers:{
-      authorization: token
-    }
-
-  });
-
-  loadChallenges();
-
-}
-function completeChallenge(id){
-
-  let completed =
-    JSON.parse(
-      localStorage.getItem("completedChallenges")
-    ) || [];
-
-  if(!completed.includes(id)){
-
-    completed.push(id);
-
-  }
-
-  localStorage.setItem(
-    "completedChallenges",
-    JSON.stringify(completed)
-  );
-
-  loadChallenges();
-
-}
-
-function closeAdmin(){
-
-  document.getElementById("admin-panel")
-    .classList.add("hidden");
-
-  document.getElementById("dashboard")
-    .style.display = "block";
-
-}
-
-</script>
-
+  <h2 class="section-subtitle">Members</h2>
+  <div id="users-list" class="users-grid"></div>
+</section>
+
+<script src="app.js"></script>
 </body>
 </html>
